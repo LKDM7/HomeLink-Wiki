@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HomeLink Dashboard · HomeLink Wiki</title>
+<meta name="description" content="HomeLink Dashboard: a control screen for HomeCore devices, server, repeaters and radio range, getting started and crafting recipes.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://lkdm7.github.io/HomeLink-Wiki/en/dashboard.html">
+<link rel="alternate" hreflang="fr" href="https://lkdm7.github.io/HomeLink-Wiki/dashboard.html">
+<link rel="alternate" hreflang="en" href="https://lkdm7.github.io/HomeLink-Wiki/en/dashboard.html">
+<link rel="alternate" hreflang="x-default" href="https://lkdm7.github.io/HomeLink-Wiki/dashboard.html">
+<meta property="og:url" content="https://lkdm7.github.io/HomeLink-Wiki/en/dashboard.html">
+<meta property="og:image" content="https://lkdm7.github.io/HomeLink-Wiki/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:image" content="https://lkdm7.github.io/HomeLink-Wiki/assets/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HomeLink Dashboard · HomeLink Wiki">
+<meta property="og:description" content="HomeLink Dashboard: a control screen for HomeCore devices, server, repeaters and radio range, getting started and crafting recipes.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <nav aria-label="Main navigation">
+    <a class="nav-brand" href="index.html">HomeLink<span class="dot">.</span>wiki</a>
+    <a class="lang-toggle" href="../dashboard.html" hreflang="fr" title="Version française">FR</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="homecore.html">HomeCore</a></li>
+      <li><a href="energy.html">Energy</a></li>
+      <li><a href="furnace.html">Furnace</a></li>
+      <li><a href="quarry.html">Quarry</a></li>
+      <li><a href="farm.html">Farm</a></li>
+      <li><a href="storage.html">Storage</a></li>
+      <li><a href="dashboard.html" aria-current="page">Dashboard</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <h1>HomeLink Dashboard <span class="version">1.6.0</span></h1>
+  <p>A generic visual control center for the HomeLink ecosystem: view HomeCore devices, run their authorized actions, receive their events and organize a personal dashboard. It interprets the public HomeCore schemas and contains no integration specific to any third-party mod.</p>
+
+  <div class="badges">
+    <span class="badge">Minecraft 1.21.1</span>
+    <span class="badge">NeoForge 21.1.250</span>
+    <span class="badge">Java 21</span>
+    <span class="badge required">HomeCore 1.14.0+ (&lt;2.0.0) : obligatoire</span>
+    <span class="badge required">HomeLink Energy 0.1.0+ : obligatoire</span>
+  </div>
+
+  <div class="downloads">
+    <a class="dl-btn cf" href="https://www.curseforge.com/minecraft/mc-mods/homelink-dashboard" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 4h14l-2 4h4l-3 5h3l-7 7 2-5H8l2-4H5l-2-7z"/></svg>CurseForge</a>
+    <a class="dl-btn gh" href="https://github.com/LKDM7/HomeLink-Dashboard/releases" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>Releases</a>
+    <a class="dl-btn gh" href="https://github.com/LKDM7/HomeLink-Dashboard" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>Source</a>
+  </div>
+
+  <nav class="toc" aria-label="Page summary">
+    <h2>On this page</h2>
+    <ol>
+      <li><a href="#blocs">Blocks</a></li>
+      <li><a href="#premiers-pas">First steps</a></li>
+      <li><a href="#interface-partagee">Shared interface</a></li>
+      <li><a href="#fabrication">Crafting</a></li>
+      <li><a href="#performance">Performance</a></li>
+      <li><a href="#installer">Install</a></li>
+      <li><a href="#galerie">Gallery</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="blocs">Blocks<a class="anchor" href="#blocs" aria-label="Link to section Blocks">#</a></h2>
+  <table>
+    <thead><tr><th scope="col">Block</th><th scope="col">Role</th></tr></thead>
+    <tbody>
+      <tr><td>HomeLink Server</td><td>Creates or joins a HomeNetwork.</td></tr>
+      <tr><td>HomeLink Dashboard</td><td>A screen showing the linked network's devices, up to 64 blocks from the server.</td></tr>
+      <tr><td>HomeLink Repeater</td><td>Extends the radio range by another 64 blocks.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="premiers-pas">First steps<a class="anchor" href="#premiers-pas" aria-label="Link to section First steps">#</a></h2>
+  <ol>
+    <li>Placer un <strong>HomeLink Server</strong> et clic droit.</li>
+    <li>Create a HomeNetwork (custom name) or pick an existing network.</li>
+    <li>Place a <strong>HomeLink Dashboard</strong> within 64 blocks and bind it to the same network. Beyond that, place repeaters.</li>
+    <li>Use the <strong>HOME</strong>, <strong>DEVICES</strong>, <strong>ALERTS</strong>, <strong>NETWORK</strong> and <strong>SETTINGS</strong> tabs; the <strong>?</strong> button opens the built-in manual.</li>
+  </ol>
+
+  <h2 id="interface-partagee">Shared interface<a class="anchor" href="#interface-partagee" aria-label="Link to section Shared interface">#</a></h2>
+  <p>Dashboard shares the frame, palette and controls of <a href="storage.html">HomeLink Storage</a>: 18-pixel controls, tooltips, a <strong>?</strong> button in the header, present in both mods.</p>
+
+  <h2 id="fabrication">Crafting<a class="anchor" href="#fabrication" aria-label="Link to section Crafting">#</a></h2>
+  <p class="icon-note">Icons: 3D render of the blocks, as in the inventory; items (ingots, components…) keep their real texture.</p>
+  <div class="recipe-list">
+    <div class="recipe" id="recipe-homelink-server">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: HomeLink Server ×1">
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/da_home_server.png" alt="HomeLink Server" title="HomeLink Server" width="16" height="128" loading="lazy" decoding="async"></div>
+        <div class="result-name">HomeLink Server<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-homelink-dashboard">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: HomeLink Dashboard ×1">
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_glass.png" alt="Glass" title="Glass (block, not a pane)" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_glass.png" alt="Glass" title="Glass (block, not a pane)" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_glass.png" alt="Glass" title="Glass (block, not a pane)" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_circuit_board.png" alt="Circuit Board" title="Circuit Board" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/da_dashboard_display.png" alt="HomeLink Dashboard" title="HomeLink Dashboard" width="16" height="128" loading="lazy" decoding="async"></div>
+        <div class="result-name">HomeLink Dashboard<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-repeteur-homelink">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: HomeLink Repeater ×1">
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/mc_repeater.png" alt="Redstone Repeater" title="Redstone Repeater" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/da_signal_repeater.png" alt="HomeLink Repeater" title="HomeLink Repeater" width="16" height="128" loading="lazy" decoding="async"></div>
+        <div class="result-name">HomeLink Repeater<span class="qty">×1</span></div>
+      </div>
+    </div>
+  </div>
+  <p>The HomeLink components are assembled at the <a href="homecore.html">HomeCore electronics workbench</a>.</p>
+
+  <h2 id="performance">Performance<a class="anchor" href="#performance" aria-label="Link to section Performance">#</a></h2>
+  <p>The verification scenario covers 100 devices and 800 metrics with real synchronization. The current network tracking is capped at 128 devices; the surplus is flagged in the interface.</p>
+
+  <h2 id="installer">Install<a class="anchor" href="#installer" aria-label="Link to section Install">#</a></h2>
+  <p>Install <code>homecore-1.14.0.jar</code>, <code>homelink_energy-0.5.0.jar</code> and <code>homelink_dashboard-1.6.0.jar</code> into <code>mods</code>, on both client and server.</p>
+
+    <h2 id="galerie">Gallery<a class="anchor" href="#galerie" aria-label="Link to section Gallery">#</a></h2>
+  <p class="icon-note">In-game captures. Click to enlarge.</p>
+  <div class="gallery">
+      <figure><button type="button" class="shot" data-full="../assets/shots/da01.png" data-cap="Wall screen"><img src="../assets/shots/da01.png" alt="Wall screen" loading="lazy" decoding="async"></button><figcaption>Wall screen</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/da02.png" data-cap="Three sizes"><img src="../assets/shots/da02.png" alt="Three sizes" loading="lazy" decoding="async"></button><figcaption>Three sizes</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/da03.png" data-cap="HomeLink Server"><img src="../assets/shots/da03.png" alt="HomeLink Server" loading="lazy" decoding="async"></button><figcaption>HomeLink Server</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/da04.png" data-cap="HomeLink Repeater"><img src="../assets/shots/da04.png" alt="HomeLink Repeater" loading="lazy" decoding="async"></button><figcaption>HomeLink Repeater</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/da05.png" data-cap="Your home page"><img src="../assets/shots/da05.png" alt="Your home page" loading="lazy" decoding="async"></button><figcaption>Your home page</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/da06.png" data-cap="Home editor"><img src="../assets/shots/da06.png" alt="Home editor" loading="lazy" decoding="async"></button><figcaption>Home editor</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/da07.png" data-cap="Built-in manual"><img src="../assets/shots/da07.png" alt="Built-in manual" loading="lazy" decoding="async"></button><figcaption>Built-in manual</figcaption></figure>
+  </div>
+
+<p class="source-note"><a href="https://github.com/LKDM7/HomeLink-Dashboard" target="_blank" rel="noopener">Source code and full documentation on GitHub →</a></p>
+    <nav class="pager" aria-label="Adjacent pages">
+    <a class="prev" href="storage.html" rel="prev"><span class="dir">← Previous</span>Storage</a>
+    <a class="next" href="tasks.html" rel="next"><span class="dir">Next →</span>Tasks</a>
+  </nav>
+</main>
+
+<footer>HomeLink Wiki. Documentation of LKDM7's HomeLink ecosystem. Mods under an "All Rights Reserved" license.</footer>
+<script src="../wiki.js"></script>
+</body>
+</html>

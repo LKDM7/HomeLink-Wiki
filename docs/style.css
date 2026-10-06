@@ -1,0 +1,638 @@
+/* HomeLink Wiki — reprend la direction artistique des GUI du mod.
+   Palette et chrome calqués sur fr.lkdm.homecore.api.client.ui.HomeLinkTheme /
+   HomeLinkUi : graphite + acier, accent cuivre, cadres biseautés à vis,
+   panneaux encastrés, slots et boutons en relief. */
+
+:root {
+  /* HomeLinkTheme (ARGB -> hex) */
+  --bg:            #2a2c2e;            /* fond page, un cran sous BACKGROUND */
+  --background:    #303234;            /* HomeLinkTheme.BACKGROUND */
+  --header:        #45474a;            /* HEADER */
+  --surface:       #252729;            /* SURFACE (panneau encastré) */
+  --surface-2:     #2d2f31;
+  --hover:         #4a4d50;            /* HOVER */
+  --line:          #626568;            /* LINE (contours, séparateurs) */
+  --accent:        #d2b181;            /* ACCENT (cuivre) */
+  --accent-strong: #e4c89a;
+  --accent-dim:    #8a7254;
+  --text:          #e7e5e0;            /* TEXT */
+  --muted:         #afb1ad;            /* MUTED */
+  --online:        #a1bd92;            /* ONLINE */
+  --warning:       #d3b16f;            /* WARNING */
+  --offline:       #d19a8f;            /* OFFLINE / erreur */
+
+  /* Reliefs du chrome (valeurs littérales de HomeLinkUi) */
+  --bevel-out:   #141617;  /* ombre extérieure du cadre */
+  --bevel-rim:   #6b6e70;  /* liseré clair du cadre */
+  --inset-dark:  #17191a;  /* haut/gauche encastré */
+  --inset-light: #535659;  /* bas/droite encastré */
+  --screw-body:  #242628;
+  --screw-hi:    #858887;
+  --btn-face:    #474a4d;
+  --btn-face-hi: #5a5d60;
+  --btn-top:     #74787a;
+  --btn-left:    #626669;
+  --btn-edge:    #181a1b;
+
+  --z-nav: 10;
+  --z-tooltip: 20;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Archivo", system-ui, -apple-system, sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Trame fine type panneau métallique */
+body {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 48px);
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-strong); text-decoration: underline; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 0;
+}
+:focus:not(:focus-visible) { outline: none; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  margin: -1px; padding: 0; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: 12px; top: -100px;
+  z-index: calc(var(--z-nav) + 5);
+  background: var(--accent); color: var(--background);
+  font-weight: 700; font-size: 0.9rem; padding: 10px 16px;
+}
+.skip-link:focus { top: 0; text-decoration: none; }
+
+code, pre, .mono { font-family: "JetBrains Mono", "Cascadia Code", monospace; }
+code {
+  background: var(--inset-dark);
+  box-shadow: inset 1px 1px 0 #0d0f10, inset -1px -1px 0 var(--inset-light);
+  border-radius: 2px;
+  padding: 0.1em 0.45em;
+  font-size: 0.88em;
+  color: var(--accent-strong);
+  overflow-wrap: anywhere;
+}
+pre {
+  background: var(--surface);
+  box-shadow: inset 2px 2px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light);
+  border: 1px solid var(--bevel-out);
+  border-radius: 2px;
+  padding: 16px 18px;
+  overflow-x: auto;
+}
+pre code { box-shadow: none; padding: 0; background: none; color: var(--text); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .card, .repo-link, nav ul a, .slot img, .pager a, .toc a {
+    transition: transform 0.12s steps(2), border-color 0.15s, background 0.15s, color 0.15s, box-shadow 0.12s;
+  }
+  html { scroll-behavior: smooth; }
+}
+
+/* ---- Barre de navigation : bandeau HEADER de la GUI ---- */
+header.top {
+  background: var(--header);
+  border-bottom: 2px solid var(--bevel-out);
+  box-shadow: inset 0 1px 0 var(--btn-top), inset 0 -2px 0 rgba(0,0,0,0.25);
+  padding: 0 20px;
+  position: sticky; top: 0;
+  z-index: var(--z-nav);
+}
+
+nav {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 8px 18px; padding: 12px 0;
+}
+
+.nav-brand {
+  font-weight: 800; font-size: 1.15rem;
+  letter-spacing: 0.01em; color: var(--text);
+  margin-right: auto; white-space: nowrap;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+}
+.nav-brand .dot { color: var(--accent); }
+a.nav-brand:hover { text-decoration: none; color: var(--text); }
+
+nav ul {
+  list-style: none; display: flex; flex-wrap: wrap;
+  gap: 4px 5px; margin: 0; padding: 0;
+}
+
+/* Onglets = HomeLinkButton.navigation : relief gris, marqueur cuivre si actif */
+nav ul a {
+  color: var(--text); font-size: 0.9rem; font-weight: 600;
+  padding: 6px 13px; display: inline-block; white-space: nowrap;
+  background: var(--btn-face);
+  border: 1px solid var(--btn-edge);
+  box-shadow: inset 0 1px 0 var(--btn-top), inset 1px 0 0 var(--btn-left);
+}
+nav ul a:hover { color: var(--text); text-decoration: none; background: var(--btn-face-hi); }
+nav ul a[aria-current="page"] {
+  color: var(--accent); background: var(--surface);
+  box-shadow: inset 0 1px 0 var(--inset-dark), inset 1px 0 0 var(--inset-dark);
+  padding-left: 18px;
+}
+/* le petit marqueur cuivre enfoncé de l'onglet actif */
+nav ul a[aria-current="page"]::before {
+  content: ""; position: absolute;
+  width: 2px; height: 2px; background: var(--accent);
+  margin-left: -11px; margin-top: 0.55em;
+}
+nav ul li { position: relative; }
+
+main { max-width: 1100px; margin: 0 auto; padding: 36px 20px 72px; }
+
+/* ---- Cadre industriel réutilisable (HomeLinkUi.frame) : bevel + vis ---- */
+.hl-frame {
+  position: relative;
+  background: var(--background);
+  border: 1px solid var(--line);
+  box-shadow: 0 0 0 2px var(--bevel-rim), 0 0 0 5px var(--bevel-out);
+}
+/* vis d'angle */
+.hl-frame::before, .hl-frame::after,
+.hl-screws::before, .hl-screws::after {
+  content: ""; position: absolute; width: 4px; height: 4px;
+  background:
+    linear-gradient(135deg, var(--screw-hi) 0 40%, transparent 40%),
+    var(--screw-body);
+  box-shadow: inset 0 0 0 1px #0d0f10;
+}
+.hl-frame::before { top: 5px; left: 5px; }
+.hl-frame::after  { top: 5px; right: 5px; }
+.hl-screws::before { bottom: 5px; left: 5px; }
+.hl-screws::after  { bottom: 5px; right: 5px; }
+
+.hero {
+  text-align: center; padding: 48px 20px 30px; margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 900;
+  letter-spacing: -0.01em; margin: 0 0 14px; text-wrap: balance;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.45);
+}
+.hero h1 .accent { color: var(--accent); }
+.hero p {
+  color: var(--muted); max-width: 640px; margin: 0 auto;
+  font-size: 1.05rem; text-wrap: pretty;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+  gap: 16px; margin-top: 30px;
+}
+
+/* ---- Carte = panneau encastré HomeLinkUi.panel ---- */
+.card {
+  position: relative;
+  background: var(--surface);
+  box-shadow: inset 2px 2px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light);
+  border: 1px solid var(--bevel-out);
+  padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;
+}
+.card:hover, .card:focus-within {
+  background: var(--surface-2);
+  box-shadow: inset 2px 2px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light), 0 0 0 1px var(--accent-dim);
+  transform: translateY(-2px);
+}
+.card h3 { margin: 0; font-size: 1.12rem; font-weight: 700; }
+.card h3 a { color: var(--text); }
+.card h3 a:hover { color: var(--accent-strong); text-decoration: none; }
+.card p { margin: 0; color: var(--muted); font-size: 0.92rem; flex-grow: 1; }
+.card .card-version {
+  font-family: "JetBrains Mono", monospace; font-size: 0.72rem;
+  color: var(--muted); letter-spacing: 0.01em;
+}
+.card .card-version .dev { color: var(--accent); }
+
+/* carte fondation : bandeau header + accent cuivre */
+.card.foundation {
+  grid-column: 1 / -1;
+  background: var(--background);
+  box-shadow: inset 0 29px 0 -27px var(--header), inset 0 0 0 1px var(--line), 0 0 0 2px var(--bevel-rim), 0 0 0 4px var(--bevel-out);
+  flex-direction: row; align-items: center; gap: 20px; flex-wrap: wrap;
+  padding: 18px 22px;
+}
+.card.foundation .foundation-icon {
+  width: 54px; height: 54px; flex-shrink: 0;
+  background: var(--surface);
+  box-shadow: inset 1px 1px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light);
+  border: 1px solid var(--bevel-out);
+  display: flex; align-items: center; justify-content: center;
+}
+.card.foundation .foundation-icon img { width: 34px; height: 34px; image-rendering: pixelated; }
+.card.foundation .foundation-body { flex: 1; min-width: 200px; }
+.card.foundation h3 { font-size: 1.28rem; }
+
+.foundation-tag {
+  display: inline-block; font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid var(--accent-dim);
+  padding: 2px 9px; width: fit-content;
+}
+
+/* ---- Badges de prérequis ---- */
+.badges { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 24px; padding: 0; list-style: none; }
+.badge {
+  font-size: 0.76rem; font-family: "JetBrains Mono", monospace;
+  color: var(--text); background: var(--surface);
+  box-shadow: inset 1px 1px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light);
+  border: 1px solid var(--bevel-out); padding: 4px 11px;
+}
+.badge.required { color: var(--offline); }
+.badge.optional { color: var(--online); }
+
+/* Titres de page en dégradé cuivre */
+h1 {
+  font-size: clamp(1.7rem, 3vw, 2.2rem); font-weight: 800; letter-spacing: -0.01em;
+  text-wrap: balance;
+  background: linear-gradient(100deg, var(--accent-strong), var(--accent) 55%, var(--accent-dim));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+h1 .version {
+  color: var(--muted); font-size: 0.5em; font-weight: 500;
+  font-family: "JetBrains Mono", monospace; letter-spacing: 0; white-space: nowrap;
+  -webkit-text-fill-color: var(--muted);
+}
+h1 .version .dev { color: var(--accent); -webkit-text-fill-color: var(--accent); }
+
+/* Titres de section dorés, avec filet cuivre qui s'étire au survol */
+h2 {
+  font-size: 1.3rem; font-weight: 700; margin-top: 46px;
+  padding-bottom: 8px; position: relative;
+  border-bottom: 2px solid var(--border-soft, #3a3d3f);
+  color: var(--accent-strong);
+  letter-spacing: -0.005em; scroll-margin-top: 84px;
+}
+h2::after {
+  content: ""; position: absolute; left: 0; bottom: -2px; height: 2px;
+  width: 56px; max-width: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+}
+h3 { font-size: 1.02rem; color: var(--accent); font-weight: 700; letter-spacing: 0.01em; }
+
+/* ---- Bulle au survol des icônes d'objet ---- */
+#hl-tip {
+  position: fixed; z-index: var(--z-tooltip);
+  background: var(--header); color: var(--text);
+  border: 1px solid var(--bevel-out);
+  box-shadow: inset 0 1px 0 var(--btn-top), 0 3px 10px rgba(0,0,0,0.5);
+  font-size: 0.82rem; font-weight: 600; padding: 5px 10px;
+  pointer-events: none; white-space: nowrap;
+  opacity: 0; transform: translateY(3px);
+  transition: opacity 0.1s ease, transform 0.1s ease;
+}
+#hl-tip.on { opacity: 1; transform: translateY(0); }
+#hl-tip::before { content: ""; position: absolute; left: var(--ax, 50%); bottom: -5px;
+  width: 8px; height: 8px; background: var(--header);
+  border-right: 1px solid var(--bevel-out); border-bottom: 1px solid var(--bevel-out);
+  transform: translateX(-50%) rotate(45deg); }
+.slot img, .chip img { cursor: help; }
+
+h2 .anchor { color: var(--muted); font-weight: 400; margin-left: 10px; font-size: 0.8em; opacity: 0; }
+h2:hover .anchor, h2 .anchor:focus-visible { opacity: 1; }
+h2 .anchor:hover { color: var(--accent-strong); text-decoration: none; }
+
+/* ---- Sommaire : panneau encastré, liens-onglets ---- */
+.toc {
+  background: var(--surface);
+  box-shadow: inset 2px 2px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light);
+  border: 1px solid var(--bevel-out);
+  border-left: 3px solid var(--accent-dim);
+  padding: 14px 18px; margin: 24px 0 8px;
+}
+.toc h2::after { content: none; }
+.toc h2 {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 700; margin: 0 0 9px; padding: 0; border: 0;
+}
+.toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 5px; }
+.toc li { margin: 0; }
+.toc a {
+  display: inline-block; font-size: 0.85rem; color: var(--text);
+  background: var(--btn-face); border: 1px solid var(--btn-edge);
+  box-shadow: inset 0 1px 0 var(--btn-top), inset 1px 0 0 var(--btn-left);
+  padding: 4px 11px;
+}
+.toc a:hover { color: var(--accent-strong); background: var(--btn-face-hi); text-decoration: none; }
+
+/* ---- Tables ---- */
+table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 16px 0; font-size: 0.92rem; table-layout: fixed;
+  border: 1px solid var(--bevel-out); box-shadow: 0 0 0 1px var(--inset-light); }
+th, td { border-bottom: 1px solid var(--inset-dark); border-right: 1px solid var(--inset-dark); padding: 9px 12px; text-align: left; overflow-wrap: anywhere; }
+tr td:last-child, tr th:last-child { border-right: none; }
+tbody tr:last-child td { border-bottom: none; }
+th { background: var(--header); color: var(--text); font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+  box-shadow: inset 0 1px 0 var(--btn-top); }
+td { background: var(--background); }
+tbody tr:nth-child(even) td { background: var(--surface-2); }
+caption { caption-side: top; text-align: left; font-size: 0.82rem; color: var(--muted); padding-bottom: 6px; }
+
+/* ---- Bouton dépôt = HomeLinkButton ---- */
+.repo-link {
+  display: inline-block; margin-top: 12px;
+  background: var(--btn-face); color: var(--text) !important;
+  border: 1px solid var(--btn-edge);
+  box-shadow: inset 0 1px 0 var(--btn-top), inset 1px 0 0 var(--btn-left), inset -1px 0 0 #3a3d3f;
+  padding: 9px 20px; font-size: 0.9rem; font-weight: 700;
+}
+.repo-link:hover { background: var(--btn-face-hi); color: var(--accent-strong) !important; text-decoration: none; }
+.repo-link:active { background: var(--surface); box-shadow: inset 0 1px 0 var(--inset-dark), inset 1px 0 0 var(--inset-dark); color: var(--accent) !important; }
+
+/* ---- Recettes ---- */
+.icon-note { font-size: 0.85rem; color: var(--muted); margin: -6px 0 18px; }
+
+.recipe-list { display: flex; flex-direction: column; gap: 16px; margin: 18px 0 32px; }
+
+/* une recette = panneau de la GUI */
+.recipe {
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  background: var(--background);
+  border: 1px solid var(--line);
+  box-shadow: 0 0 0 2px var(--bevel-rim), 0 0 0 4px var(--bevel-out);
+  padding: 16px 20px; scroll-margin-top: 90px;
+}
+.recipe:target { box-shadow: 0 0 0 2px var(--accent), 0 0 0 4px var(--bevel-out); }
+
+/* grille de craft = fond encastré */
+.recipe-grid {
+  display: grid; grid-template-columns: repeat(3, 36px); grid-template-rows: repeat(3, 36px);
+  gap: 3px; background: var(--surface);
+  box-shadow: inset 2px 2px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light);
+  padding: 6px; border: 1px solid var(--bevel-out); flex-shrink: 0;
+}
+
+/* slot = HomeLinkUi.slot : fond SURFACE, bord sombre haut/gauche, clair bas/droite */
+.slot {
+  width: 36px; height: 36px; background: var(--surface);
+  box-shadow: inset 1px 1px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light);
+  display: flex; align-items: center; justify-content: center; position: relative;
+}
+.slot.empty { background: #202224; box-shadow: inset 1px 1px 0 #0d0f10; }
+.slot img { width: 28px; height: 28px; image-rendering: pixelated; object-fit: cover; object-position: top center; }
+.slot:hover img { transform: scale(1.12); }
+
+.slot .count {
+  position: absolute; bottom: -2px; right: -1px;
+  font-family: "JetBrains Mono", monospace; font-size: 0.62rem; font-weight: 700;
+  color: var(--text); text-shadow: 1px 1px 0 #000; line-height: 1.35;
+}
+.slot .tier {
+  position: absolute; top: -5px; left: -5px;
+  font-family: "JetBrains Mono", monospace; font-size: 0.55rem; font-weight: 700;
+  background: var(--accent); color: var(--background);
+  width: 15px; height: 15px; display: flex; align-items: center; justify-content: center;
+  box-shadow: inset -1px -1px 0 var(--accent-dim);
+}
+
+.recipe-arrow { color: var(--accent); font-size: 1.5rem; flex-shrink: 0; text-shadow: 1px 1px 0 #000; }
+
+.recipe-result { display: flex; align-items: center; gap: 12px; }
+.recipe-result .slot {
+  width: 46px; height: 46px; background: var(--background);
+  box-shadow: inset 1px 1px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light), 0 0 0 2px var(--accent);
+}
+.recipe-result .slot img { width: 36px; height: 36px; }
+.result-name { font-weight: 700; line-height: 1.3; }
+.result-name .qty { color: var(--muted); font-weight: 400; font-size: 0.85rem; display: block; }
+
+/* puces d'ingrédients */
+.ingredient-chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chip {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--surface);
+  box-shadow: inset 1px 1px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light);
+  border: 1px solid var(--bevel-out);
+  padding: 4px 10px 4px 5px; font-size: 0.84rem; color: var(--text);
+}
+.chip img { width: 22px; height: 22px; image-rendering: pixelated; object-fit: cover; object-position: top center; }
+.chip .x { font-family: "JetBrains Mono", monospace; color: var(--accent-strong); font-weight: 700; font-size: 0.8rem; }
+
+/* voyant d'état (HomeLinkUi.statusDot) pour les tableaux de liaison */
+.dot { display: inline-block; width: 8px; height: 8px; margin-right: 6px; vertical-align: middle;
+  background: #1d1f20; box-shadow: inset 2px 2px 0 var(--inset-dark); position: relative; }
+.dot::after { content: ""; position: absolute; inset: 2px; background: var(--muted); }
+.dot.online::after { background: var(--online); }
+.dot.warning::after { background: var(--warning); }
+.dot.offline::after { background: var(--offline); }
+
+.source-note { margin-top: 32px; }
+
+/* ---- Pager ---- */
+.pager { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 54px; padding-top: 24px; border-top: 2px solid var(--line); }
+.pager a {
+  flex: 1 1 240px; background: var(--btn-face); color: var(--text);
+  border: 1px solid var(--btn-edge);
+  box-shadow: inset 0 1px 0 var(--btn-top), inset 1px 0 0 var(--btn-left);
+  padding: 12px 16px;
+}
+.pager a:hover { background: var(--btn-face-hi); text-decoration: none; color: var(--accent-strong); }
+.pager .dir { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 2px; }
+.pager .next { text-align: right; }
+
+footer {
+  border-top: 2px solid var(--line); text-align: center;
+  padding: 26px 20px; color: var(--muted); font-size: 0.85rem;
+}
+
+@media (max-width: 760px) {
+  nav { gap: 6px 10px; }
+  nav ul { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; width: 100%; padding-bottom: 2px; scroll-snap-type: x proximity; }
+  nav ul::-webkit-scrollbar { display: none; }
+  nav ul li { scroll-snap-align: start; }
+}
+
+@media (max-width: 640px) {
+  main { padding: 26px 16px 56px; }
+  .recipe { justify-content: center; }
+  .card.foundation { flex-direction: column; align-items: flex-start; }
+  .pager .next { text-align: left; }
+}
+
+@media print {
+  header.top, .toc, .pager, .skip-link, .repo-link { display: none; }
+  html, body { background: #fff; color: #000; }
+  body { background-image: none; }
+  main { max-width: none; padding: 0; }
+  a { color: #000; text-decoration: underline; }
+  h2 { break-after: avoid; border-bottom: 1px solid #999; }
+  .recipe, .card, table, pre { break-inside: avoid; box-shadow: none !important; border-color: #999 !important; background: #fff !important; }
+  .slot, .chip, .badge, th { background: #f2f2f2 !important; color: #000 !important; box-shadow: none !important; }
+  .result-name .qty, .icon-note, footer { color: #444 !important; }
+  h2 .anchor { display: none; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Animations (désactivées si prefers-reduced-motion ou si JS absent)  */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  /* Apparition au défilement : masqué seulement quand le JS a pris la main */
+  html.js .reveal { opacity: 0; transform: translateY(16px); }
+  html.js .reveal.in {
+    opacity: 1; transform: none;
+    transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  /* léger décalage en cascade pour les cartes et recettes d'une même liste */
+  html.js .grid .reveal.in,
+  html.js .recipe-list .reveal.in { transition-delay: calc(var(--i, 0) * 60ms); }
+
+  /* Le filet cuivre du titre s'étire quand la section apparaît */
+  html.js h2.reveal::after { width: 0; }
+  html.js h2.reveal.in::after { width: 56px; transition: width 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s; }
+
+  /* Entrée du héros au chargement */
+  .hero h1 { animation: hl-rise 0.7s cubic-bezier(0.16,1,0.3,1) both; }
+  .hero p  { animation: hl-rise 0.7s cubic-bezier(0.16,1,0.3,1) 0.12s both; }
+  @keyframes hl-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+  /* Reflet cuivre qui traverse le titre du héros */
+  .hero h1 .accent {
+    background: linear-gradient(100deg, var(--accent) 0%, var(--accent-strong) 20%, #fff2dc 30%, var(--accent-strong) 40%, var(--accent) 60%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: hl-sheen 6s ease-in-out 1s infinite;
+  }
+  @keyframes hl-sheen { 0%,100% { background-position: 120% 0; } 50% { background-position: -20% 0; } }
+
+  /* Pulsation cuivre du résultat d'une recette au survol */
+  .recipe:hover .recipe-result .slot {
+    animation: hl-pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes hl-pulse {
+    0%,100% { box-shadow: inset 1px 1px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light), 0 0 0 2px var(--accent); }
+    50%     { box-shadow: inset 1px 1px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light), 0 0 0 2px var(--accent-strong), 0 0 10px 1px rgba(210,177,129,0.45); }
+  }
+
+  /* Flèche de recette qui glisse légèrement au survol */
+  .recipe:hover .recipe-arrow { animation: hl-nudge 0.9s ease-in-out infinite; }
+  @keyframes hl-nudge { 0%,100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+}
+
+/* ---- Boutons de téléchargement ---- */
+.downloads { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 4px; }
+.dl-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; font-size: 0.9rem; font-weight: 700;
+  border: 1px solid var(--btn-edge);
+  box-shadow: inset 0 1px 0 var(--btn-top), inset 1px 0 0 var(--btn-left);
+  text-decoration: none;
+}
+.dl-btn:hover { text-decoration: none; }
+.dl-btn.cf { background: linear-gradient(180deg, var(--accent), var(--accent-dim)); color: #241a0e !important; border-color: #5b4a30; }
+.dl-btn.cf:hover { background: linear-gradient(180deg, var(--accent-strong), var(--accent)); color: #241a0e !important; }
+.dl-btn.gh { background: var(--btn-face); color: var(--text) !important; }
+.dl-btn.gh:hover { background: var(--btn-face-hi); color: var(--accent-strong) !important; }
+.dl-btn .ic { width: 16px; height: 16px; flex-shrink: 0; }
+.dl-note { font-size: 0.82rem; color: var(--muted); margin: 6px 0 0; }
+
+/* ---- Galerie (captures en jeu) + lightbox ---- */
+.gallery {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px; margin: 18px 0 8px;
+}
+.gallery figure {
+  margin: 0; background: var(--surface);
+  box-shadow: inset 2px 2px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light);
+  border: 1px solid var(--bevel-out); padding: 8px;
+}
+.gallery button.shot {
+  display: block; width: 100%; padding: 0; border: 1px solid var(--bevel-out);
+  background: var(--bg); cursor: zoom-in; line-height: 0;
+}
+.gallery button.shot img { width: 100%; height: auto; display: block; image-rendering: auto; }
+.gallery figcaption { font-size: 0.82rem; color: var(--muted); padding: 8px 2px 2px; line-height: 1.4; }
+
+#hl-lb {
+  position: fixed; inset: 0; z-index: calc(var(--z-tooltip) + 10);
+  background: rgba(10,11,12,0.88); backdrop-filter: blur(3px);
+  display: none; align-items: center; justify-content: center; flex-direction: column;
+  padding: 24px; gap: 12px;
+}
+#hl-lb.on { display: flex; }
+#hl-lb img {
+  max-width: min(1100px, 94vw); max-height: 80vh; width: auto; height: auto;
+  border: 1px solid var(--line); box-shadow: 0 0 0 3px var(--bevel-out), 0 10px 40px rgba(0,0,0,0.6);
+  image-rendering: auto;
+}
+#hl-lb .cap { color: var(--text); font-size: 0.92rem; text-align: center; max-width: 90vw; }
+#hl-lb .close {
+  position: absolute; top: 16px; right: 20px;
+  background: var(--btn-face); color: var(--text); border: 1px solid var(--btn-edge);
+  box-shadow: inset 0 1px 0 var(--btn-top); font-size: 1.1rem; font-weight: 700;
+  width: 36px; height: 36px; cursor: pointer; line-height: 1;
+}
+#hl-lb .close:hover { background: var(--btn-face-hi); color: var(--accent-strong); }
+
+/* ---- Recherche ---- */
+.nav-search-wrap { position: relative; margin-left: 10px; }
+#hl-search {
+  width: 190px; max-width: 46vw;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--bevel-out);
+  box-shadow: inset 1px 1px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light);
+  padding: 7px 11px; font-size: 0.88rem; font-family: inherit;
+}
+#hl-search::placeholder { color: var(--muted); }
+#hl-search:focus { outline: none; box-shadow: inset 1px 1px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light), 0 0 0 2px var(--accent); }
+#hl-results {
+  position: absolute; top: calc(100% + 6px); left: 0; right: auto; width: min(340px, 86vw);
+  max-height: 60vh; overflow-y: auto; z-index: calc(var(--z-nav) + 6);
+  background: var(--background); border: 1px solid var(--line);
+  box-shadow: 0 0 0 2px var(--bevel-rim), 0 8px 24px rgba(0,0,0,0.55);
+  display: none; padding: 5px;
+}
+#hl-results.on { display: block; }
+#hl-results a {
+  display: flex; align-items: center; gap: 9px; padding: 7px 9px;
+  color: var(--text); text-decoration: none; border: 1px solid transparent;
+}
+#hl-results a:hover, #hl-results a.sel { background: var(--surface); border-color: var(--accent-dim); text-decoration: none; }
+#hl-results img { width: 22px; height: 22px; image-rendering: pixelated; flex-shrink: 0; }
+#hl-results .r-kind { margin-left: auto; font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+#hl-results .r-sub { font-size: 0.74rem; color: var(--muted); }
+#hl-results .r-name { display: flex; flex-direction: column; line-height: 1.2; }
+#hl-results .empty { padding: 10px 12px; color: var(--muted); font-size: 0.85rem; }
+
+/* ---- Navigation croisée ---- */
+.slot img.linkable, .chip img.linkable { cursor: pointer; }
+.slot:has(img.linkable)::after {
+  content: ""; position: absolute; right: -2px; top: -2px;
+  width: 6px; height: 6px; background: var(--circuit, var(--online));
+  opacity: 0; transition: opacity 0.12s;
+}
+.slot:hover:has(img.linkable)::after { opacity: 0.9; }
+.used-in { margin-top: 6px; font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+.used-in a { color: var(--accent); }
+@media (max-width: 760px){ #hl-search{ width: 150px; } }
+
+/* ---- Bouton de langue ---- */
+.lang-toggle {
+  order: 1;
+  font-family: "JetBrains Mono", monospace; font-size: 0.78rem; font-weight: 700;
+  color: var(--accent); background: var(--surface);
+  border: 1px solid var(--bevel-out);
+  box-shadow: inset 1px 1px 0 var(--inset-dark), inset -1px -1px 0 var(--inset-light);
+  padding: 6px 11px; margin-left: auto; letter-spacing: 0.04em; white-space: nowrap;
+}
+.lang-toggle:hover { color: var(--accent-strong); background: var(--surface-2); text-decoration: none; }

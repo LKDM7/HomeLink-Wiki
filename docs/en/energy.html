@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HomeLink Energy · HomeLink Wiki</title>
+<meta name="description" content="HomeLink Energy: solar panels, wind turbines, batteries and copper cables in HE (HomeLink Energy) — per-tier output, exposure rules and exact recipes.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://lkdm7.github.io/HomeLink-Wiki/en/energy.html">
+<link rel="alternate" hreflang="fr" href="https://lkdm7.github.io/HomeLink-Wiki/energy.html">
+<link rel="alternate" hreflang="en" href="https://lkdm7.github.io/HomeLink-Wiki/en/energy.html">
+<link rel="alternate" hreflang="x-default" href="https://lkdm7.github.io/HomeLink-Wiki/energy.html">
+<meta property="og:url" content="https://lkdm7.github.io/HomeLink-Wiki/en/energy.html">
+<meta property="og:image" content="https://lkdm7.github.io/HomeLink-Wiki/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:image" content="https://lkdm7.github.io/HomeLink-Wiki/assets/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HomeLink Energy · HomeLink Wiki">
+<meta property="og:description" content="HomeLink Energy: solar panels, wind turbines, batteries and copper cables in HE (HomeLink Energy) — per-tier output, exposure rules and exact recipes.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <nav aria-label="Main navigation">
+    <a class="nav-brand" href="index.html">HomeLink<span class="dot">.</span>wiki</a>
+    <a class="lang-toggle" href="../energy.html" hreflang="fr" title="Version française">FR</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="homecore.html">HomeCore</a></li>
+      <li><a href="energy.html" aria-current="page">Energy</a></li>
+      <li><a href="furnace.html">Furnace</a></li>
+      <li><a href="quarry.html">Quarry</a></li>
+      <li><a href="farm.html">Farm</a></li>
+      <li><a href="storage.html">Storage</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <h1>HomeLink Energy <span class="version">0.5.0</span></h1>
+  <p>Renewable energy production measured in <strong>HE</strong> (HomeLink Energy): solar panels, wind turbines, a hydro branch, batteries and copper cables, all tied to the shared energy network and exposed through the public HomeCore API.</p>
+
+  <div class="badges">
+    <span class="badge">Minecraft 1.21.1</span>
+    <span class="badge">NeoForge 21.1.251</span>
+    <span class="badge">Java 21</span>
+    <span class="badge required">HomeCore 1.14.0+ : obligatoire</span>
+  </div>
+
+  <div class="downloads">
+    <a class="dl-btn cf" href="https://www.curseforge.com/minecraft/mc-mods/homelink-energy" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 4h14l-2 4h4l-3 5h3l-7 7 2-5H8l2-4H5l-2-7z"/></svg>CurseForge</a>
+    <a class="dl-btn gh" href="https://github.com/LKDM7/HomeLink-Energy/releases" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>Releases</a>
+    <a class="dl-btn gh" href="https://github.com/LKDM7/HomeLink-Energy" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>Source</a>
+  </div>
+
+  <nav class="toc" aria-label="Page summary">
+    <h2>On this page</h2>
+    <ol>
+      <li><a href="#panneaux-solaires">Solar panels</a></li>
+      <li><a href="#eoliennes">Wind turbines</a></li>
+      <li><a href="#hydraulique">Hydro</a></li>
+      <li><a href="#batteries">Batteries</a></li>
+      <li><a href="#cables">Cables</a></li>
+      <li><a href="#integration">Integration</a></li>
+      <li><a href="#installer">Install</a></li>
+      <li><a href="#galerie">Gallery</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="panneaux-solaires">Solar panels<a class="anchor" href="#panneaux-solaires" aria-label="Link to section Solar panels">#</a></h2>
+  <table>
+    <thead><tr><th scope="col">Block</th><th scope="col">Footprint</th><th scope="col">Output / clear cycle</th><th scope="col">Buffer</th></tr></thead>
+    <tbody>
+      <tr><td>Solar Panel I</td><td>1×1</td><td>2,000 HE</td><td>1,000 HE</td></tr>
+      <tr><td>Solar Panel II</td><td>2×1</td><td>8,000 HE</td><td>1,000 HE</td></tr>
+      <tr><td>Solar Panel III</td><td>2×2</td><td>20,000 HE</td><td>1,000 HE</td></tr>
+    </tbody>
+  </table>
+  <p>Reference cycle: 24,000 ticks (sine curve 0→12,000, then none). Clear 100%, rain 40%, storm 15%. <strong>Strict</strong> exposure: any non-air block above blocks production, even glass or water.</p>
+
+  <p class="icon-note">Exact recipes (vanilla table). Icons: 3D render of the blocks, as in the inventory; items (ingots, components…) keep their real texture.</p>
+  <div class="recipe-list">
+    <div class="recipe" id="recipe-solar-panel-i">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Solar Panel I ×1">
+        <div class="slot"><img src="../assets/items/mc_glass.png" alt="Glass" title="Glass" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_glass.png" alt="Glass" title="Glass" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_glass.png" alt="Glass" title="Glass" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_quartz.png" alt="Quartz" title="Quartz" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_quartz.png" alt="Quartz" title="Quartz" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_circuit_board.png" alt="Circuit Board" title="Circuit Board" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">I</span><img src="../assets/items/en_solar_panel_1.png" alt="Solar Panel I" title="Solar Panel I" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Solar Panel I<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-solar-panel-ii">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Solar Panel II ×1">
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/en_solar_panel_1.png" alt="Solar Panel I" title="Solar Panel I" width="16" height="16" loading="lazy" decoding="async"><span class="tier">I</span></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">II</span><img src="../assets/items/en_solar_panel_2.png" alt="Solar Panel II" title="Solar Panel II" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Solar Panel II<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-solar-panel-iii">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Solar Panel III ×1">
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/en_solar_panel_2.png" alt="Solar Panel II" title="Solar Panel II" width="16" height="16" loading="lazy" decoding="async"><span class="tier">II</span></div>
+        <div class="slot"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">III</span><img src="../assets/items/en_solar_panel_3.png" alt="Solar Panel III" title="Solar Panel III" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Solar Panel III<span class="qty">×1</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="eoliennes">Wind turbines<a class="anchor" href="#eoliennes" aria-label="Link to section Wind turbines">#</a></h2>
+  <table>
+    <thead><tr><th scope="col">Block</th><th scope="col">Footprint</th><th scope="col">Nominal / 24,000 ticks</th></tr></thead>
+    <tbody>
+      <tr><td>Wind Turbine I</td><td>1×1</td><td>3,000 HE</td></tr>
+      <tr><td>Wind Turbine II</td><td>2×1</td><td>12,000 HE</td></tr>
+      <tr><td>Wind Turbine III</td><td>2×2</td><td>28,000 HE</td></tr>
+    </tbody>
+  </table>
+  <p>They produce day and night. Wind evolves gradually per dimension; rain multiplies output by 1.25, a storm by 1.60, hub altitude adds a bonus, capped at 150%. The nominal assumes 100% wind, clear sky and a hub between Y80 and Y119.</p>
+
+  <div class="recipe-list">
+    <div class="recipe" id="recipe-wind-turbine-i">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Wind Turbine I ×1">
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_circuit_board.png" alt="Circuit Board" title="Circuit Board" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">I</span><img src="../assets/items/en_wind_turbine.png" alt="Wind Turbine I" title="Wind Turbine I" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Wind Turbine I<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-wind-turbine-ii">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Wind Turbine II ×1">
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/en_wind_turbine.png" alt="Wind Turbine I" title="Wind Turbine I" width="16" height="16" loading="lazy" decoding="async"><span class="tier">I</span></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">II</span><img src="../assets/items/en_wind_turbine_2.png" alt="Wind Turbine II" title="Wind Turbine II" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Wind Turbine II<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-wind-turbine-iii">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Wind Turbine III ×1">
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/en_wind_turbine_2.png" alt="Wind Turbine II" title="Wind Turbine II" width="16" height="16" loading="lazy" decoding="async"><span class="tier">II</span></div>
+        <div class="slot"><img src="../assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">III</span><img src="../assets/items/en_wind_turbine_3.png" alt="Wind Turbine III" title="Wind Turbine III" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Wind Turbine III<span class="qty">×1</span></div>
+      </div>
+    </div>
+  </div>
+
+
+  <h2 id="hydraulique">Hydro<a class="anchor" href="#hydraulique" aria-label="Link to section Hydro">#</a></h2>
+  <table>
+    <thead><tr><th scope="col">Block</th><th scope="col">Role</th><th scope="col">Detail</th></tr></thead>
+    <tbody>
+      <tr><td>Hydro Pump I / II / III</td><td>Captures the water current</td><td>Three throughput tiers, linked to pipes.</td></tr>
+      <tr><td>Hydro Pipe</td><td>Water transport</td><td>Crafted in batches of 4; links pumps and turbine.</td></tr>
+      <tr><td>Hydro Turbine</td><td>Generation</td><td>A 2×2×2 structure converting the flow into HE.</td></tr>
+    </tbody>
+  </table>
+  <p>The hydro branch produces continuously as long as it receives a water flow: the pumps feed a 2×2×2 turbine through pipes. It is the most stable base source, independent of weather and the day/night cycle.</p>
+
+  <div class="recipe-list">
+    <div class="recipe" id="recipe-hydro-pump-i">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Hydro Pump I ×1">
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_circuit_board.png" alt="Circuit Board" title="Circuit Board" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_piston_side.png" alt="Piston" title="Piston" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">I</span><img src="../assets/items/en_hydro_pump.png" alt="Hydro Pump I" title="Hydro Pump I" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Hydro Pump I<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-hydro-pump-ii">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Hydro Pump II ×1">
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/en_hydro_pump.png" alt="Hydro Pump I" title="Hydro Pump I" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">II</span><img src="../assets/items/en_hydro_pump_2.png" alt="Hydro Pump II" title="Hydro Pump II" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Hydro Pump II<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-hydro-pump-iii">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Hydro Pump III ×1">
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/en_hydro_pump_2.png" alt="Hydro Pump II" title="Hydro Pump II" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">III</span><img src="../assets/items/en_hydro_pump_3.png" alt="Hydro Pump III" title="Hydro Pump III" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Hydro Pump III<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-hydro-pipe">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Hydro Pipe ×4">
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/en_hydro_pipe.png" alt="Hydro Pipe" title="Hydro Pipe" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Hydro Pipe<span class="qty">×4</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-hydro-turbine">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Hydro Turbine ×1">
+        <div class="slot"><img src="../assets/items/mc_iron_block.png" alt="Iron Block" title="Iron Block" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_block.png" alt="Iron Block" title="Iron Block" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_piston_side.png" alt="Piston" title="Piston" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_piston_side.png" alt="Piston" title="Piston" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_block.png" alt="Copper Block" title="Copper Block" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_block.png" alt="Copper Block" title="Copper Block" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/en_hydro_turbine.png" alt="Hydro Turbine" title="Hydro Turbine" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Hydro Turbine<span class="qty">×1</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="batteries">Batteries<a class="anchor" href="#batteries" aria-label="Link to section Batteries">#</a></h2>
+  <table>
+    <thead><tr><th scope="col">Block</th><th scope="col">Capacity</th><th scope="col">Max throughput (each way)</th></tr></thead>
+    <tbody>
+      <tr><td>Battery I</td><td>40,000 HE</td><td>8 HE/t</td></tr>
+      <tr><td>Battery II</td><td>120,000 HE</td><td>32 HE/t</td></tr>
+      <tr><td>Battery III</td><td>320,000 HE</td><td>128 HE/t</td></tr>
+    </tbody>
+  </table>
+  <p>A battery placed directly under a panel or turbine receives energy automatically. The network distributes: producers → consumers, surplus → batteries, batteries → remaining consumers, never battery to battery.</p>
+
+  <div class="recipe-list">
+    <div class="recipe" id="recipe-battery-i">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Battery I ×1">
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_circuit_board.png" alt="Circuit Board" title="Circuit Board" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">I</span><img src="../assets/items/en_battery_1.png" alt="Battery I" title="Battery I" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Battery I<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-battery-ii">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Battery II ×1">
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/en_battery_1.png" alt="Battery I" title="Battery I" width="16" height="16" loading="lazy" decoding="async"><span class="tier">I</span></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone_block.png" alt="Redstone Block" title="Redstone Block" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">II</span><img src="../assets/items/en_battery_2.png" alt="Battery II" title="Battery II" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Battery II<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-battery-iii">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Battery III ×1">
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_block.png" alt="Gold Block" title="Gold Block" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/en_battery_2.png" alt="Battery II" title="Battery II" width="16" height="16" loading="lazy" decoding="async"><span class="tier">II</span></div>
+        <div class="slot"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_block.png" alt="Copper Block" title="Copper Block" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_block.png" alt="Copper Block" title="Copper Block" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">III</span><img src="../assets/items/en_battery_3.png" alt="Battery III" title="Battery III" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Battery III<span class="qty">×1</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="cables">Cables<a class="anchor" href="#cables" aria-label="Link to section Cables">#</a></h2>
+  <p>Thin tracks placed like redstone, on floor, wall or ceiling, needing a support (solid face or HE port). The network is recomputed on every structural change, capped at 1,024 nodes.</p>
+
+  <div class="recipe-list">
+    <div class="recipe" id="recipe-cable-cuivre">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Copper Cable ×8">
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_white_wool.png" alt="Wool (any color)" title="Wool (any color)" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_white_wool.png" alt="Wool (any color)" title="Wool (any color)" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/en_copper_energy_cable.png" alt="Copper Cable" title="Copper Cable" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Copper Cable<span class="qty">×8</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="integration">Integration<a class="anchor" href="#integration" aria-label="Link to section Integration">#</a></h2>
+  <p>The <a href="farm.html">Farm</a>, <a href="quarry.html">Quarry</a>, <a href="storage.html">Storage</a> and <a href="dashboard.html">Dashboard</a> machines consume HE through HomeCore's energy contract (<code>EnergyApi.BLOCK</code>). All four declare HomeLink Energy as a <strong>required dependency</strong> in their <code>neoforge.mods.toml</code>: Farm, Quarry and Storage require <code>[0.5.0,1.0.0)</code>, Dashboard <code>[0.1.0,1.0.0)</code>. Without HomeLink Energy, none of the four will load.</p>
+
+  <h2 id="installer">Install<a class="anchor" href="#installer" aria-label="Link to section Install">#</a></h2>
+  <p>Copy <code>homelink_energy-0.5.0.jar</code> and <code>homecore-1.14.0.jar</code> into <code>mods/</code>, on both client and server. HomeCore is required and is not bundled in the Energy JAR.</p>
+
+    <h2 id="galerie">Gallery<a class="anchor" href="#galerie" aria-label="Link to section Gallery">#</a></h2>
+  <p class="icon-note">In-game captures. Click to enlarge.</p>
+  <div class="gallery">
+      <figure><button type="button" class="shot" data-full="../assets/shots/en01.png" data-cap="Energy machines"><img src="../assets/shots/en01.png" alt="Energy machines" loading="lazy" decoding="async"></button><figcaption>Energy machines</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/en02.png" data-cap="Wind turbines"><img src="../assets/shots/en02.png" alt="Wind turbines" loading="lazy" decoding="async"></button><figcaption>Wind turbines</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/en03.png" data-cap="Batteries and solar panels"><img src="../assets/shots/en03.png" alt="Batteries and solar panels" loading="lazy" decoding="async"></button><figcaption>Batteries and solar panels</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/en04.png" data-cap="Hydro branch"><img src="../assets/shots/en04.png" alt="Hydro branch" loading="lazy" decoding="async"></button><figcaption>Hydro branch</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/en05.png" data-cap="Hydro pumps"><img src="../assets/shots/en05.png" alt="Hydro pumps" loading="lazy" decoding="async"></button><figcaption>Hydro pumps</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/en06.png" data-cap="Rotor area"><img src="../assets/shots/en06.png" alt="Rotor area" loading="lazy" decoding="async"></button><figcaption>Rotor area</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/en07.png" data-cap="Solar panel screen"><img src="../assets/shots/en07.png" alt="Solar panel screen" loading="lazy" decoding="async"></button><figcaption>Solar panel screen</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/en08.png" data-cap="Wind turbine screen"><img src="../assets/shots/en08.png" alt="Wind turbine screen" loading="lazy" decoding="async"></button><figcaption>Wind turbine screen</figcaption></figure>
+  </div>
+
+<p class="source-note"><a href="https://github.com/LKDM7/HomeLink-Energy" target="_blank" rel="noopener">Source code and full documentation on GitHub →</a></p>
+    <nav class="pager" aria-label="Adjacent pages">
+    <a class="prev" href="homecore.html" rel="prev"><span class="dir">← Previous</span>HomeCore</a>
+    <a class="next" href="furnace.html" rel="next"><span class="dir">Next →</span>Furnace</a>
+  </nav>
+</main>
+
+<footer>HomeLink Wiki. Documentation of LKDM7's HomeLink ecosystem. Mods under an "All Rights Reserved" license.</footer>
+<script src="../wiki.js"></script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HomeLink Farm · HomeLink Wiki</title>
+<meta name="description" content="HomeLink Farm: Crop Monitor, copper irrigation, autonomous FarmBot and Farm Controller, block roles, recipes and HomeCore integration.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://lkdm7.github.io/HomeLink-Wiki/en/farm.html">
+<link rel="alternate" hreflang="fr" href="https://lkdm7.github.io/HomeLink-Wiki/farm.html">
+<link rel="alternate" hreflang="en" href="https://lkdm7.github.io/HomeLink-Wiki/en/farm.html">
+<link rel="alternate" hreflang="x-default" href="https://lkdm7.github.io/HomeLink-Wiki/farm.html">
+<meta property="og:url" content="https://lkdm7.github.io/HomeLink-Wiki/en/farm.html">
+<meta property="og:image" content="https://lkdm7.github.io/HomeLink-Wiki/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:image" content="https://lkdm7.github.io/HomeLink-Wiki/assets/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HomeLink Farm · HomeLink Wiki">
+<meta property="og:description" content="HomeLink Farm: Crop Monitor, copper irrigation, autonomous FarmBot and Farm Controller, block roles, recipes and HomeCore integration.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <nav aria-label="Main navigation">
+    <a class="nav-brand" href="index.html">HomeLink<span class="dot">.</span>wiki</a>
+    <a class="lang-toggle" href="../farm.html" hreflang="fr" title="Version française">FR</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="homecore.html">HomeCore</a></li>
+      <li><a href="energy.html">Energy</a></li>
+      <li><a href="furnace.html">Furnace</a></li>
+      <li><a href="quarry.html">Quarry</a></li>
+      <li><a href="farm.html" aria-current="page">Farm</a></li>
+      <li><a href="storage.html">Storage</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <h1>HomeLink Farm <span class="version">1.5.0</span></h1>
+  <p>The farming module of the HomeLink ecosystem: monitor, diagnose, irrigate, optimize and connect a farm. No resource is ever created; only the <strong>FarmBot</strong> harvests and replants, actually walking to the crops.</p>
+
+  <div class="badges">
+    <span class="badge">Minecraft 1.21.1</span>
+    <span class="badge">NeoForge 21.1.251</span>
+    <span class="badge">Java 21</span>
+    <span class="badge required">HomeCore 1.14.0+ : obligatoire</span>
+    <span class="badge required">HomeLink Energy 0.5.0+ : obligatoire</span>
+  </div>
+
+  <div class="downloads">
+    <a class="dl-btn cf" href="https://www.curseforge.com/minecraft/mc-mods/homelink-farm" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 4h14l-2 4h4l-3 5h3l-7 7 2-5H8l2-4H5l-2-7z"/></svg>CurseForge</a>
+    <a class="dl-btn gh" href="https://github.com/LKDM7/HomeLink-Farm/releases" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>Releases</a>
+    <a class="dl-btn gh" href="https://github.com/LKDM7/HomeLink-Farm" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>Source</a>
+  </div>
+
+  <nav class="toc" aria-label="Page summary">
+    <h2>On this page</h2>
+    <ol>
+      <li><a href="#blocs-et-objets">Blocks and items</a></li>
+      <li><a href="#recettes">Recipes</a></li>
+      <li><a href="#surveillance-et-diagnostic">Monitoring and diagnostics</a></li>
+      <li><a href="#irrigation">Irrigation</a></li>
+      <li><a href="#farmbot">FarmBot</a></li>
+      <li><a href="#vue-irrigation-touche-i">Irrigation view (key I)</a></li>
+      <li><a href="#integration-homecore">HomeCore integration</a></li>
+      <li><a href="#installer">Install</a></li>
+      <li><a href="#galerie">Gallery</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="blocs-et-objets">Blocks and items<a class="anchor" href="#blocs-et-objets" aria-label="Link to section Blocks and items">#</a></h2>
+  <table>
+    <thead><tr><th scope="col">Item</th><th scope="col">Role</th></tr></thead>
+    <tbody>
+      <tr><td>Farm Controller</td><td>The farm's brain: linked components, aggregated statistics, a HomeCore device.</td></tr>
+      <tr><td>Crop Monitor</td><td>Monitors an area: ready/growing crops, maturity, irrigation, problems.</td></tr>
+      <tr><td>Farm Connector</td><td>A configuration tool (not consumed) for linking blocks together.</td></tr>
+      <tr><td>Irrigation Pump</td><td>Hydraulic core: requires a real adjacent or submerged water source.</td></tr>
+      <tr><td>Copper Irrigation Pipe</td><td>Automatically connected pipe, oxidizes cosmetically over ~100 in-game days; all four stages can be waxed with honeycomb to lock their look, like vanilla copper.</td></tr>
+      <tr><td>Copper Sprinkler</td><td>Irrigates the area around it, gives off light like a torch.</td></tr>
+      <tr><td>FarmBot Station</td><td>Dock, charger, start/return point for a FarmBot.</td></tr>
+      <tr><td>FarmBot</td><td>Autonomous farming robot: harvests and replants mature crops.</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="recettes">Recipes<a class="anchor" href="#recettes" aria-label="Link to section Recipes">#</a></h2>
+  <p class="icon-note">All at the vanilla crafting table. Icons: 3D render of the blocks, as in the inventory; items (ingots, components…) keep their real texture.</p>
+  <div class="recipe-list">
+    <div class="recipe" id="recipe-copper-irrigation-pipe">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Copper Irrigation Pipe ×6">
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div><div class="slot empty" aria-hidden="true"></div><div class="slot empty" aria-hidden="true"></div>
+        <div class="slot empty" aria-hidden="true"></div><div class="slot empty" aria-hidden="true"></div><div class="slot empty" aria-hidden="true"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/fa_copper_pipe.png" alt="Copper Irrigation Pipe" title="Copper Irrigation Pipe" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Copper Irrigation Pipe<span class="qty">×6</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-copper-sprinkler">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Copper Sprinkler ×1">
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_grate.png" alt="Copper Grate" title="Copper Grate" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/mc_glowstone_dust.png" alt="Glowstone Dust" title="Glowstone Dust" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/fa_copper_pipe.png" alt="Copper Irrigation Pipe" title="Copper Irrigation Pipe" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/fa_copper_sprinkler.png" alt="Copper Sprinkler" title="Copper Sprinkler" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Copper Sprinkler<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-crop-monitor">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Crop Monitor ×1">
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_glass.png" alt="Glass Pane" title="Any glass pane (tag c:glass_panes)" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_wheat_seeds.png" alt="Seeds" title="Any seeds (tag c:seeds)" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/fa_crop_monitor.png" alt="Crop Monitor" title="Crop Monitor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Crop Monitor<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-farm-connector">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Farm Connector ×1">
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div><div class="slot empty" aria-hidden="true"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/fa_farm_connector.png" alt="Farm Connector" title="Farm Connector" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Farm Connector<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-farm-controller">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Farm Controller ×1">
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_glass.png" alt="Glass Pane" title="Any glass pane (tag c:glass_panes)" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/fa_farm_controller.png" alt="Farm Controller" title="Farm Controller" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Farm Controller<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-farmbot">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: FarmBot ×1">
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/chest.svg" alt="Chest (wood)" title="Chest (wood)" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/fa_farmbot.png" alt="FarmBot" title="FarmBot" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">FarmBot<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-farmbot-station">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: FarmBot Station ×1">
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/chest.svg" alt="Chest (wood)" title="Chest (wood)" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone_block.png" alt="Redstone Block" title="Redstone Block" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/fa_farmbot_station.png" alt="FarmBot Station" title="FarmBot Station" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">FarmBot Station<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-irrigation-pump">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Irrigation Pump ×1">
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_bucket.png" alt="Bucket" title="Bucket" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_piston_side.png" alt="Piston" title="Piston" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/fa_irrigation_pump.png" alt="Irrigation Pump" title="Irrigation Pump" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Irrigation Pump<span class="qty">×1</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="surveillance-et-diagnostic">Monitoring and diagnostics<a class="anchor" href="#surveillance-et-diagnostic" aria-label="Link to section Monitoring and diagnostics">#</a></h2>
+  <p>Maturity normalized 0→100%. Problems are reported only when Minecraft provides a reliable signal: <code>DRY_FARMLAND</code>, <code>LOW_LIGHT</code>, <code>NOT_IRRIGATED</code>, <code>IRRIGATION_OFFLINE</code>. The <strong>LOCATE</strong> function sends a temporary marker to the relevant player, without changing any block.</p>
+
+  <h2 id="irrigation">Irrigation<a class="anchor" href="#irrigation" aria-label="Link to section Irrigation">#</a></h2>
+  <p>Deterministic rule: <strong>one pump feeds at most 5 sprinklers</strong>. Beyond that, the whole network goes <code>OVER_CAPACITY</code> and stops entirely. Each sprinkler covers a 5×5 square and grants a <strong>+20%</strong> growth bonus to the compatible crops it covers.</p>
+
+  <h2 id="farmbot">FarmBot<a class="anchor" href="#farmbot" aria-label="Link to section FarmBot">#</a></h2>
+  <p>The robot never scans the farm itself: the Crop Monitor supplies it with the mature positions (512 at most). It walks there by pathfinding, harvests, replants with part of the harvest, then returns to its station at 20% battery or when its 9 slots are full.</p>
+  <p>Visible states: DOCKED, IDLE, SEARCHING, MOVING, HARVESTING, RETURNING, UNLOADING, CHARGING, PAUSED, STORAGE FULL, OUTPUT BLOCKED, LOW BATTERY, OUT OF POWER, STUCK, ERROR.</p>
+
+  <h2 id="vue-irrigation-touche-i">Irrigation view (key I)<a class="anchor" href="#vue-irrigation-touche-i" aria-label="Link to section Irrigation view (key I)">#</a></h2>
+  <p>Visual cues above crops: turquoise (irrigated area), coral (network down), gray (unpowered sprinkler), golden crosses (unirrigated crops).</p>
+
+  <h2 id="integration-homecore">HomeCore integration<a class="anchor" href="#integration-homecore" aria-label="Link to section HomeCore integration">#</a></h2>
+  <table>
+    <thead><tr><th scope="col">Device</th><th scope="col">Key metrics</th><th scope="col">Events</th></tr></thead>
+    <tbody>
+      <tr><td><code>farm_controller</code></td><td>crop_count, maturity, irrigation_coverage, growth_bonus</td><td>crop_ready, problem_detected</td></tr>
+      <tr><td><code>farmbot_station</code></td><td>farmbot_status, farmbot_battery, farmbot_storage</td><td>farmbot_low_battery, farmbot_storage_full, farmbot_stuck</td></tr>
+      <tr><td><code>irrigation_pump</code></td><td>pump_status, sprinklers_connected, over_capacity</td><td>pump_over_capacity, irrigation_failure</td></tr>
+    </tbody>
+  </table>
+  <p>Depends on neither Dashboard, Storage nor the holographic map: those mods read the generic data through HomeCore. The mod is fully available in French and English.</p>
+
+  <h2 id="installer">Install<a class="anchor" href="#installer" aria-label="Link to section Install">#</a></h2>
+  <p>Install <code>homelink_farm-1.5.0.jar</code>, <code>homelink_energy-0.5.0.jar</code> and <code>homecore-1.14.0.jar</code> into <code>mods</code>, client and server.</p>
+
+    <h2 id="galerie">Gallery<a class="anchor" href="#galerie" aria-label="Link to section Gallery">#</a></h2>
+  <p class="icon-note">In-game captures. Click to enlarge.</p>
+  <div class="gallery">
+      <figure><button type="button" class="shot" data-full="../assets/shots/fa01.png" data-cap="Copper irrigation"><img src="../assets/shots/fa01.png" alt="Copper irrigation" loading="lazy" decoding="async"></button><figcaption>Copper irrigation</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/fa02.png" data-cap="Crop Monitor zone"><img src="../assets/shots/fa02.png" alt="Crop Monitor zone" loading="lazy" decoding="async"></button><figcaption>Crop Monitor zone</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/fa03.png" data-cap="Locate a problem"><img src="../assets/shots/fa03.png" alt="Locate a problem" loading="lazy" decoding="async"></button><figcaption>Locate a problem</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/fa04.png" data-cap="Irrigation view"><img src="../assets/shots/fa04.png" alt="Irrigation view" loading="lazy" decoding="async"></button><figcaption>Irrigation view</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/fa05.png" data-cap="Farm machines"><img src="../assets/shots/fa05.png" alt="Farm machines" loading="lazy" decoding="async"></button><figcaption>Farm machines</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/fa06.png" data-cap="At night"><img src="../assets/shots/fa06.png" alt="At night" loading="lazy" decoding="async"></button><figcaption>At night</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/fa07.png" data-cap="Crop Monitor screen"><img src="../assets/shots/fa07.png" alt="Crop Monitor screen" loading="lazy" decoding="async"></button><figcaption>Crop Monitor screen</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/fa08.png" data-cap="FarmBot Station screen"><img src="../assets/shots/fa08.png" alt="FarmBot Station screen" loading="lazy" decoding="async"></button><figcaption>FarmBot Station screen</figcaption></figure>
+  </div>
+
+<p class="source-note"><a href="https://github.com/LKDM7/HomeLink-Farm" target="_blank" rel="noopener">Source code and full documentation on GitHub →</a></p>
+    <nav class="pager" aria-label="Adjacent pages">
+    <a class="prev" href="quarry.html" rel="prev"><span class="dir">← Previous</span>Quarry</a>
+    <a class="next" href="storage.html" rel="next"><span class="dir">Next →</span>Storage</a>
+  </nav>
+</main>
+
+<footer>HomeLink Wiki. Documentation of LKDM7's HomeLink ecosystem. Mods under an "All Rights Reserved" license.</footer>
+<script src="../wiki.js"></script>
+</body>
+</html>

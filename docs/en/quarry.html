@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HomeLink Quarry · HomeLink Wiki</title>
+<meta name="description" content="HomeLink Quarry: a physical block-by-block quarry, area and mining-head tiers, safety, automatic output and recipes for the 7 items.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://lkdm7.github.io/HomeLink-Wiki/en/quarry.html">
+<link rel="alternate" hreflang="fr" href="https://lkdm7.github.io/HomeLink-Wiki/quarry.html">
+<link rel="alternate" hreflang="en" href="https://lkdm7.github.io/HomeLink-Wiki/en/quarry.html">
+<link rel="alternate" hreflang="x-default" href="https://lkdm7.github.io/HomeLink-Wiki/quarry.html">
+<meta property="og:url" content="https://lkdm7.github.io/HomeLink-Wiki/en/quarry.html">
+<meta property="og:image" content="https://lkdm7.github.io/HomeLink-Wiki/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:image" content="https://lkdm7.github.io/HomeLink-Wiki/assets/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HomeLink Quarry · HomeLink Wiki">
+<meta property="og:description" content="HomeLink Quarry: a physical block-by-block quarry, area and mining-head tiers, safety, automatic output and recipes for the 7 items.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <nav aria-label="Main navigation">
+    <a class="nav-brand" href="index.html">HomeLink<span class="dot">.</span>wiki</a>
+    <a class="lang-toggle" href="../quarry.html" hreflang="fr" title="Version française">FR</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="homecore.html">HomeCore</a></li>
+      <li><a href="energy.html">Energy</a></li>
+      <li><a href="furnace.html">Furnace</a></li>
+      <li><a href="quarry.html" aria-current="page">Quarry</a></li>
+      <li><a href="farm.html">Farm</a></li>
+      <li><a href="storage.html">Storage</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <h1>HomeLink Quarry <span class="version">1.4.0</span></h1>
+  <p>Adds a physical quarry: a visible mining head moves above the area and mines <strong>one block at a time</strong>, layer by layer, from the Start Y down to the Stop Y. Drops pass through a 27-slot buffer.</p>
+
+  <div class="badges">
+    <span class="badge">Minecraft 1.21.1</span>
+    <span class="badge">NeoForge 21.1.251</span>
+    <span class="badge">Java 21</span>
+    <span class="badge required">HomeCore 1.14.0+ : obligatoire</span>
+    <span class="badge required">HomeLink Energy 0.5.0+ : obligatoire</span>
+    <span class="badge optional">HomeLink Storage : facultatif</span>
+  </div>
+
+  <div class="downloads">
+    <a class="dl-btn gh" href="https://github.com/LKDM7/HomeLink-Quarry/releases" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>Releases</a>
+    <a class="dl-btn gh" href="https://github.com/LKDM7/HomeLink-Quarry" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>Source</a>
+  </div>
+  <p class="dl-note">CurseForge: publication under review.</p>
+
+  <nav class="toc" aria-label="Page summary">
+    <h2>On this page</h2>
+    <ol>
+      <li><a href="#niveaux">Tiers</a></li>
+      <li><a href="#prise-en-main">Getting started</a></li>
+      <li><a href="#securite">Safety</a></li>
+      <li><a href="#sortie-automatique">Automatic output</a></li>
+      <li><a href="#recettes">Recipes</a></li>
+      <li><a href="#homecore">HomeCore</a></li>
+      <li><a href="#installer">Install</a></li>
+      <li><a href="#galerie">Gallery</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="niveaux">Tiers<a class="anchor" href="#niveaux" aria-label="Link to section Tiers">#</a></h2>
+  <p>The Quarry tier sets <strong>only the area</strong>, the Head sets <strong>only the speed</strong>: all 9 combinations are possible, with no durability on the heads.</p>
+  <table>
+    <thead><tr><th scope="col">Quarry</th><th scope="col">Maximum area</th></tr></thead>
+    <tbody>
+      <tr><td>Quarry I</td><td>8×8</td></tr>
+      <tr><td>Quarry II</td><td>16×16</td></tr>
+      <tr><td>Quarry III</td><td>32×32</td></tr>
+    </tbody>
+  </table>
+  <table>
+    <thead><tr><th scope="col">Mining head</th><th scope="col">Speed</th></tr></thead>
+    <tbody>
+      <tr><td>Head I</td><td>1 block / 10 s</td></tr>
+      <tr><td>Head II</td><td>1 block / 6 s</td></tr>
+      <tr><td>Head III</td><td>1 block / 3 s</td></tr>
+    </tbody>
+  </table>
+  <p>Fuel (coal, charcoal, coal block, lava bucket, any furnace fuel) only sets the run time, never the speed.</p>
+
+  <h2 id="prise-en-main">Getting started<a class="anchor" href="#prise-en-main" aria-label="Link to section Getting started">#</a></h2>
+  <ol>
+    <li>Place the Quarry, screen facing the player, output at the back.</li>
+    <li>With a <strong>Quarry Marker</strong>: Corner A (right-click), Corner B (sneak + right-click), then right-click the Quarry to apply.</li>
+    <li>Output view: install the Head and fuel. Area view: set the Stop Y and preview the volume.</li>
+    <li>Start / Pause / Resume / Stop. Stopping keeps the job; changing the area starts a new one.</li>
+  </ol>
+
+  <h2 id="securite">Safety<a class="anchor" href="#securite" aria-label="Link to section Safety">#</a></h2>
+  <p>Never mined: bedrock, portals, portal frames, command and structure blocks, jigsaw, barrier, reinforced deepslate, fluids. The list is extensible via the <code>homelink_quarry:quarry_blacklist</code> tag. Every block goes through the standard break event (server protections are respected). The Quarry never force-loads a chunk: it waits if its target is unloaded.</p>
+
+  <h2 id="sortie-automatique">Automatic output<a class="anchor" href="#sortie-automatique" aria-label="Link to section Automatic output">#</a></h2>
+  <p>The buffer empties automatically into a compatible input placed against the back (tag <code>homelink_quarry:item_inputs</code>), which includes the Storage Deposit from <a href="storage.html">HomeLink Storage</a> when that mod is installed, with no code dependency.</p>
+
+  <h2 id="recettes">Recipes<a class="anchor" href="#recettes" aria-label="Link to section Recipes">#</a></h2>
+  <p class="icon-note">Icons: 3D render of the blocks, as in the inventory. The badge shows the block's tier.</p>
+  <div class="recipe-list">
+    <div class="recipe" id="recipe-quarry-i">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Quarry I ×1">
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_piston_side.png" alt="Piston" title="Piston" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_circuit_board.png" alt="Circuit Board" title="Circuit Board" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/chest.svg" alt="Chest" title="Chest" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">I</span><img src="../assets/items/qu_quarry.png" alt="Quarry I" title="Quarry I" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Quarry I<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-quarry-ii">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Quarry II ×1">
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/qu_quarry.png" alt="Quarry I" title="Quarry I" width="16" height="16" loading="lazy" decoding="async"><span class="tier">I</span></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_circuit_board.png" alt="Circuit Board" title="Circuit Board" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">II</span><img src="../assets/items/qu_quarry_2.png" alt="Quarry II" title="Quarry II" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Quarry II<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-quarry-iii">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Quarry III ×1">
+        <div class="slot"><img src="../assets/items/mc_netherite_ingot.png" alt="Netherite Ingot" title="Netherite Ingot" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_netherite_ingot.png" alt="Netherite Ingot" title="Netherite Ingot" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/qu_quarry_2.png" alt="Quarry II" title="Quarry II" width="16" height="16" loading="lazy" decoding="async"><span class="tier">II</span></div>
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone_block.png" alt="Redstone Block" title="Redstone Block" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone_block.png" alt="Redstone Block" title="Redstone Block" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">III</span><img src="../assets/items/qu_quarry_3.png" alt="Quarry III" title="Quarry III" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Quarry III<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-tete-de-forage-i">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Mining Head I ×1">
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_circuit_board.png" alt="Circuit Board" title="Circuit Board" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">I</span><img src="../assets/items/qu_mining_head.png" alt="Mining Head I" title="Mining Head I" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Mining Head I<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-tete-de-forage-ii">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Mining Head II ×1">
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/qu_mining_head.png" alt="Mining Head I" title="Mining Head I" width="16" height="16" loading="lazy" decoding="async"><span class="tier">I</span></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">II</span><img src="../assets/items/qu_mining_head_2.png" alt="Mining Head II" title="Mining Head II" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Mining Head II<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-tete-de-forage-iii">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Mining Head III ×1">
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_netherite_ingot.png" alt="Netherite Ingot" title="Netherite Ingot" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/qu_mining_head_2.png" alt="Mining Head II" title="Mining Head II" width="16" height="16" loading="lazy" decoding="async"><span class="tier">II</span></div>
+        <div class="slot"><img src="../assets/items/mc_netherite_ingot.png" alt="Netherite Ingot" title="Netherite Ingot" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">III</span><img src="../assets/items/qu_mining_head_3.png" alt="Mining Head III" title="Mining Head III" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Mining Head III<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-marqueur-de-quarry">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Quarry Marker ×1">
+        <div class="slot empty" aria-hidden="true"></div><div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/mc_stick.png" alt="Stick" title="Stick" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div><div class="slot empty" aria-hidden="true"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/qu_quarry_marker.png" alt="Quarry Marker" title="Quarry Marker" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Quarry Marker<span class="qty">×1</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="homecore">HomeCore<a class="anchor" href="#homecore" aria-label="Link to section HomeCore">#</a></h2>
+  <p>The Quarry is a HomeCore device (<code>homelink_quarry:quarry</code>) exposing 19 metrics, the Start/Pause/Resume/Stop actions and 12 events published on transitions.</p>
+
+  <h2 id="installer">Install<a class="anchor" href="#installer" aria-label="Link to section Install">#</a></h2>
+  <p>Install <code>homelink_quarry-1.4.0.jar</code>, <code>homelink_energy-0.5.0.jar</code> and <code>homecore-1.14.0.jar</code> into <code>mods</code>, client and server.</p>
+
+    <h2 id="galerie">Gallery<a class="anchor" href="#galerie" aria-label="Link to section Gallery">#</a></h2>
+  <p class="icon-note">In-game captures. Click to enlarge.</p>
+  <div class="gallery">
+      <figure><button type="button" class="shot" data-full="../assets/shots/qu01.png" data-cap="Mining head at work"><img src="../assets/shots/qu01.png" alt="Mining head at work" loading="lazy" decoding="async"></button><figcaption>Mining head at work</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/qu02.png" data-cap="Area preview"><img src="../assets/shots/qu02.png" alt="Area preview" loading="lazy" decoding="async"></button><figcaption>Area preview</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/qu03.png" data-cap="Quarry GUI while mining"><img src="../assets/shots/qu03.png" alt="Quarry GUI while mining" loading="lazy" decoding="async"></button><figcaption>Quarry GUI while mining</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/qu04.png" data-cap="Rails and controller"><img src="../assets/shots/qu04.png" alt="Rails and controller" loading="lazy" decoding="async"></button><figcaption>Rails and controller</figcaption></figure>
+  </div>
+
+  <p class="source-note"><a href="https://github.com/LKDM7/HomeLink-Quarry" target="_blank" rel="noopener">Source code and full documentation on GitHub →</a></p>
+    <nav class="pager" aria-label="Adjacent pages">
+    <a class="prev" href="furnace.html" rel="prev"><span class="dir">← Previous</span>Furnace</a>
+    <a class="next" href="farm.html" rel="next"><span class="dir">Next →</span>Farm</a>
+  </nav>
+</main>
+
+<footer>HomeLink Wiki. Documentation of LKDM7's HomeLink ecosystem. Mods under an "All Rights Reserved" license.</footer>
+<script src="../wiki.js"></script>
+</body>
+</html>

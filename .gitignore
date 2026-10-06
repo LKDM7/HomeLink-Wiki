@@ -1,0 +1,27 @@
+# HomeLink Wiki — only the static site in docs/ is versioned.
+
+# Local tooling, agent configuration and runtime data (kept out of Git on purpose)
+.agents/
+.claude/
+.claude-flow/
+.codex/
+.swarm/
+.mcp.json
+AGENTS.md
+CLAUDE.md
+PRODUCT.md
+docs/.claude-flow/
+
+# IDE / project scaffolding
+.idea/
+*.iml
+src/
+out/
+bin/
+
+# Stray / editor files
+{n++
+.DS_Store
+.vscode/
+.env
+.env.*

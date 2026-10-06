@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HomeCore · HomeLink Wiki</title>
+<meta name="description" content="HomeCore 1.14.0: the shared HomeLink API (devices, metrics, actions, events, persistent networks), the electronics workbench and the recipes for the four base components.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://lkdm7.github.io/HomeLink-Wiki/en/homecore.html">
+<link rel="alternate" hreflang="fr" href="https://lkdm7.github.io/HomeLink-Wiki/homecore.html">
+<link rel="alternate" hreflang="en" href="https://lkdm7.github.io/HomeLink-Wiki/en/homecore.html">
+<link rel="alternate" hreflang="x-default" href="https://lkdm7.github.io/HomeLink-Wiki/homecore.html">
+<meta property="og:url" content="https://lkdm7.github.io/HomeLink-Wiki/en/homecore.html">
+<meta property="og:image" content="https://lkdm7.github.io/HomeLink-Wiki/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:image" content="https://lkdm7.github.io/HomeLink-Wiki/assets/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HomeCore · HomeLink Wiki">
+<meta property="og:description" content="HomeCore 1.14.0: the shared HomeLink API (devices, metrics, actions, events, persistent networks), the electronics workbench and the recipes for the four base components.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <nav aria-label="Main navigation">
+    <a class="nav-brand" href="index.html">HomeLink<span class="dot">.</span>wiki</a>
+    <a class="lang-toggle" href="../homecore.html" hreflang="fr" title="Version française">FR</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="homecore.html" aria-current="page">HomeCore</a></li>
+      <li><a href="energy.html">Energy</a></li>
+      <li><a href="furnace.html">Furnace</a></li>
+      <li><a href="quarry.html">Quarry</a></li>
+      <li><a href="farm.html">Farm</a></li>
+      <li><a href="storage.html">Storage</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <h1>HomeCore <span class="version">1.14.0</span></h1>
+  <p>Shared API for the devices and networks of a Minecraft base. HomeCore depends on no consumer mod: Dashboard, Energy, Furnace, Quarry, Farm, Storage and Tasks use its contracts without it knowing their implementations.</p>
+
+  <div class="badges">
+    <span class="badge">Minecraft 1.21.1</span>
+    <span class="badge">NeoForge 21.1.250</span>
+    <span class="badge">Java 21</span>
+    <span class="badge">DashboardAPI 1.9.0</span>
+    <span class="badge optional">Foundation: no dependencies</span>
+    <span class="badge optional">JEI: optional support</span>
+    <span class="badge optional">REI: optional support</span>
+  </div>
+
+  <div class="downloads">
+    <a class="dl-btn cf" href="https://www.curseforge.com/minecraft/mc-mods/homecore" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 4h14l-2 4h4l-3 5h3l-7 7 2-5H8l2-4H5l-2-7z"/></svg>CurseForge</a>
+    <a class="dl-btn gh" href="https://github.com/LKDM7/HomeCore/releases" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>Releases</a>
+    <a class="dl-btn gh" href="https://github.com/LKDM7/HomeCore" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>Source</a>
+  </div>
+
+  <nav class="toc" aria-label="Page summary">
+    <h2>On this page</h2>
+    <ol>
+      <li><a href="#role">Role</a></li>
+      <li><a href="#permissions">Permissions</a></li>
+      <li><a href="#etabli-electronique-homelink">HomeLink electronics workbench</a></li>
+      <li><a href="#recettes">Recipes</a></li>
+      <li><a href="#connecteur-homelink">HomeLink connector</a></li>
+      <li><a href="#reseaux-persistants">Persistent networks</a></li>
+      <li><a href="#installer-construire">Install / build</a></li>
+      <li><a href="#galerie">Gallery</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="role">Role<a class="anchor" href="#role" aria-label="Link to section Role">#</a></h2>
+  <p>HomeCore defines the shared contracts (<code>fr.lkdm.homecore.api.*</code>) that any mod can implement or consume:</p>
+  <ul>
+    <li><strong>DashboardDevice</strong>: a logical device (block, machine, system) identified by a stable UUID.</li>
+    <li><strong>DeviceMetric</strong>: a value exposed by the device (temperature, energy, progress…), with a refresh frequency (REALTIME, FAST, NORMAL, SLOW, STATIC).</li>
+    <li><strong>DeviceAction</strong>: an action triggerable remotely (button, slider), protected by permission.</li>
+    <li><strong>DeviceEvent</strong>: an event published on a state transition (alert, completion…), consumable by subscription.</li>
+    <li><strong>HomeNetwork</strong>: a persistent network grouping devices and players with roles.</li>
+  </ul>
+
+  <h2 id="permissions">Permissions<a class="anchor" href="#permissions" aria-label="Link to section Permissions">#</a></h2>
+  <table>
+    <thead><tr><th scope="col">Role</th><th scope="col">Default permissions</th></tr></thead>
+    <tbody>
+      <tr><td>OWNER</td><td>All recognized permissions</td></tr>
+      <tr><td>ADMIN</td><td>VIEW, CONTROL, AUTOMATE, CONFIGURE, MANAGE_NETWORK</td></tr>
+      <tr><td>MEMBER</td><td>VIEW, CONTROL, AUTOMATE</td></tr>
+      <tr><td>VIEWER</td><td>VIEW</td></tr>
+    </tbody>
+  </table>
+  <p>Each device checks network membership, a CONTROL/specific permission, ONLINE state and parameter validity before running an action. A limit of 10 requests per player, refilled at 10/s, guards against abuse.</p>
+
+  <h2 id="etabli-electronique-homelink">HomeLink electronics workbench<a class="anchor" href="#etabli-electronique-homelink" aria-label="Link to section HomeLink electronics workbench">#</a></h2>
+  <p><code>homecore:electronics_workbench</code> is the assembly station shared by every HomeLink mod. It occupies 2 blocks, consumes neither energy nor fuel, and crafts the four base electronic components:</p>
+  <table>
+    <thead><tr><th scope="col">Component</th><th scope="col">ID</th><th scope="col">Role</th></tr></thead>
+    <tbody>
+      <tr><td>Circuit Board</td><td><code>homecore:homelink_circuit_board</code></td><td>Base electronics</td></tr>
+      <tr><td>Microprocessor</td><td><code>homecore:homelink_microprocessor</code></td><td>Processing and logic</td></tr>
+      <tr><td>Communication Module</td><td><code>homecore:homelink_communication_module</code></td><td>Communication, networking, detection</td></tr>
+      <tr><td>Control Module</td><td><code>homecore:homelink_control_module</code></td><td>Machine control and automation</td></tr>
+    </tbody>
+  </table>
+  <p>These IDs are stable: consumer mods can reference them directly without depending on one another.</p>
+
+  <h2 id="recettes">Recipes<a class="anchor" href="#recettes" aria-label="Link to section Recipes">#</a></h2>
+  <p>The workbench is crafted at the vanilla table. The four components are crafted <strong>inside</strong> the electronics workbench (shapeless recipe: a list of ingredients with amounts, no fixed grid). The 3×3 grid below applies only to the workbench itself.</p>
+  <p class="icon-note">Icons: 3D render of the blocks, as in the inventory; items (ingots, components…) keep their real texture.</p>
+
+  <div class="recipe-list">
+    <div class="recipe" id="recipe-etabli-electronique">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Electronics Workbench ×1">
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron Ingot" title="Iron Ingot" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron Ingot" title="Iron Ingot" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper Ingot" title="Copper Ingot" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_crafting_table_top.png" alt="Crafting Table" title="Crafting Table" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper Ingot" title="Copper Ingot" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_oak_planks.png" alt="Planks (any type)" title="Planks (any type)" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_oak_planks.png" alt="Planks (any type)" title="Planks (any type)" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_oak_planks.png" alt="Planks (any type)" title="Planks (any type)" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/hc_electronics_workbench.png" alt="HomeLink Electronics Workbench" title="HomeLink Electronics Workbench" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Electronics Workbench<span class="qty">×1</span></div>
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <thead><tr><th scope="col">Component (workbench)</th><th scope="col">Ingredients</th><th scope="col">Result</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Circuit Board</td>
+        <td>
+          <div class="ingredient-chips">
+            <span class="chip"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"><span class="x">×4</span></span>
+            <span class="chip"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"><span class="x">×4</span></span>
+            <span class="chip"><img src="../assets/items/mc_quartz.png" alt="Quartz" title="Quartz" width="16" height="16" loading="lazy" decoding="async"><span class="x">×1</span></span>
+          </div>
+        </td>
+        <td><span class="ingredient-chips"><span class="chip"><img src="../assets/items/hc_circuit_board.png" alt="Circuit Board" title="Circuit Board" width="16" height="16" loading="lazy" decoding="async"><span class="x">×2</span></span></span></td>
+      </tr>
+      <tr>
+        <td>Microprocessor</td>
+        <td>
+          <div class="ingredient-chips">
+            <span class="chip"><img src="../assets/items/hc_circuit_board.png" alt="Circuit Board" title="Circuit Board" width="16" height="16" loading="lazy" decoding="async"><span class="x">×1</span></span>
+            <span class="chip"><img src="../assets/items/mc_gold_nugget.png" alt="Gold Nugget" title="Gold Nugget" width="16" height="16" loading="lazy" decoding="async"><span class="x">×4</span></span>
+            <span class="chip"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"><span class="x">×2</span></span>
+            <span class="chip"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"><span class="x">×1</span></span>
+            <span class="chip"><img src="../assets/items/mc_quartz.png" alt="Quartz" title="Quartz" width="16" height="16" loading="lazy" decoding="async"><span class="x">×1</span></span>
+          </div>
+        </td>
+        <td><span class="ingredient-chips"><span class="chip"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"><span class="x">×1</span></span></span></td>
+      </tr>
+      <tr>
+        <td>Communication Module</td>
+        <td>
+          <div class="ingredient-chips">
+            <span class="chip"><img src="../assets/items/hc_circuit_board.png" alt="Circuit Board" title="Circuit Board" width="16" height="16" loading="lazy" decoding="async"><span class="x">×1</span></span>
+            <span class="chip"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"><span class="x">×1</span></span>
+            <span class="chip"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"><span class="x">×2</span></span>
+            <span class="chip"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"><span class="x">×2</span></span>
+            <span class="chip"><img src="../assets/items/mc_quartz.png" alt="Quartz" title="Quartz" width="16" height="16" loading="lazy" decoding="async"><span class="x">×1</span></span>
+            <span class="chip"><img src="../assets/items/mc_amethyst_shard.png" alt="Amethyst Shard" title="Amethyst Shard" width="16" height="16" loading="lazy" decoding="async"><span class="x">×1</span></span>
+          </div>
+        </td>
+        <td><span class="ingredient-chips"><span class="chip"><img src="../assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"><span class="x">×1</span></span></span></td>
+      </tr>
+      <tr>
+        <td>Control Module</td>
+        <td>
+          <div class="ingredient-chips">
+            <span class="chip"><img src="../assets/items/hc_circuit_board.png" alt="Circuit Board" title="Circuit Board" width="16" height="16" loading="lazy" decoding="async"><span class="x">×1</span></span>
+            <span class="chip"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"><span class="x">×1</span></span>
+            <span class="chip"><img src="../assets/items/mc_comparator.png" alt="Comparator" title="Comparator" width="16" height="16" loading="lazy" decoding="async"><span class="x">×1</span></span>
+            <span class="chip"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"><span class="x">×2</span></span>
+            <span class="chip"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"><span class="x">×2</span></span>
+            <span class="chip"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"><span class="x">×1</span></span>
+          </div>
+        </td>
+        <td><span class="ingredient-chips"><span class="chip"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"><span class="x">×1</span></span></span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 id="connecteur-homelink">HomeLink connector<a class="anchor" href="#connecteur-homelink" aria-label="Link to section HomeLink connector">#</a></h2>
+  <p><code>homecore:homelink_connector</code> is the common tool for binding a device to a HomeNetwork. It works with any device discovered by a HomeCore provider and implementing <code>NetworkMember</code>: it is therefore the same tool for Farm, Quarry, Storage or Dashboard machines.</p>
+  <table>
+    <caption>The four uses of the connector.</caption>
+    <thead><tr><th scope="col">Action</th><th scope="col">Effect</th></tr></thead>
+    <tbody>
+      <tr><td>Click in the air</td><td>Cycles through the networks the player can administer; the selected network is shown in the message.</td></tr>
+      <tr><td>Click on a device</td><td>Binds that device to the selected network.</td></tr>
+      <tr><td>Sneak + click a bound device</td><td>Selects that device's network.</td></tr>
+      <tr><td>Sneak + click in the air</td><td>Clears the tool's selection (detaches no device).</td></tr>
+    </tbody>
+  </table>
+  <p>The selection is kept on the item and permissions are rechecked on every use. The connector calls <code>DashboardAPI.bindDevice()</code>: it requires the right to configure the machine and <code>MANAGE_NETWORK</code> on both the target network <em>and</em> the previous one. A denial keeps the existing binding. The machine's owner is not transferred with its binding.</p>
+  <p>Each mod's specialized tools remain useful for their own associations (crop zones, mining area). The energy cables of <a href="energy.html">HomeLink Energy</a> and item ports are <strong>physical</strong> connections, distinct from the HomeNetwork.</p>
+
+  <p class="icon-note">The icon below is a 3D render of the connector, as in the inventory. Crafted at the vanilla table, on a 2 × 2 grid.</p>
+  <div class="recipe-list">
+    <div class="recipe" id="recipe-connecteur-homelink">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: HomeLink Connector ×1">
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+        <div class="slot empty" aria-hidden="true"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><img src="../assets/items/hc_connector.png" alt="HomeLink Connector" title="HomeLink Connector" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">HomeLink Connector<span class="qty">×1</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="reseaux-persistants">Persistent networks<a class="anchor" href="#reseaux-persistants" aria-label="Link to section Persistent networks">#</a></h2>
+  <p>HomeNetworks are saved in the Overworld's SavedData and shared across dimensions. Device UUIDs survive restarts. Three link states are available to consumers: <code>CONNECTED</code>, <code>UNREACHABLE</code>, <code>OFFLINE</code>. HomeCore computes no radio range: that logic belongs to each mod (see <a href="dashboard.html">Dashboard</a> for its repeater system).</p>
+
+  <h2 id="installer-construire">Install / build<a class="anchor" href="#installer-construire" aria-label="Link to section Install / build">#</a></h2>
+  <pre><code>./gradlew.bat clean build test javadoc
+./gradlew.bat runClient</code></pre>
+  <p>The JAR is produced in <code>build/libs</code>; install <code>homecore-1.14.0.jar</code> on both client and server. To develop a consumer mod, first publish HomeCore locally with <code>./gradlew.bat publishToMavenLocal</code>.</p>
+
+    <h2 id="galerie">Gallery<a class="anchor" href="#galerie" aria-label="Link to section Gallery">#</a></h2>
+  <p class="icon-note">In-game captures. Click to enlarge.</p>
+  <div class="gallery">
+      <figure><button type="button" class="shot" data-full="../assets/shots/hc01.png" data-cap="Electronics workbench"><img src="../assets/shots/hc01.png" alt="Electronics workbench" loading="lazy" decoding="async"></button><figcaption>Electronics workbench</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/hc02.png" data-cap="Choosing a batch"><img src="../assets/shots/hc02.png" alt="Choosing a batch" loading="lazy" decoding="async"></button><figcaption>Choosing a batch</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/hc03.png" data-cap="Assembling a prototype"><img src="../assets/shots/hc03.png" alt="Assembling a prototype" loading="lazy" decoding="async"></button><figcaption>Assembling a prototype</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/hc04.png" data-cap="Control Module layout"><img src="../assets/shots/hc04.png" alt="Control Module layout" loading="lazy" decoding="async"></button><figcaption>Control Module layout</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="../assets/shots/hc05.png" data-cap="Batch complete"><img src="../assets/shots/hc05.png" alt="Batch complete" loading="lazy" decoding="async"></button><figcaption>Batch complete</figcaption></figure>
+  </div>
+
+  <p class="source-note"><a href="https://github.com/LKDM7/HomeCore" target="_blank" rel="noopener">Source code and full documentation on GitHub →</a></p>
+    <nav class="pager" aria-label="Adjacent pages">
+    <a class="prev" href="index.html" rel="prev"><span class="dir">← Previous</span>Home</a>
+    <a class="next" href="energy.html" rel="next"><span class="dir">Next →</span>Energy</a>
+  </nav>
+</main>
+
+<footer>HomeLink Wiki. Documentation of LKDM7's HomeLink ecosystem. Mods under an "All Rights Reserved" license.</footer>
+<script src="../wiki.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lkdm7.github.io/HomeLink-Wiki/sitemap.xml

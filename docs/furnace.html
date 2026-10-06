@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HomeLink Furnace · HomeLink Wiki</title>
+<meta name="description" content="HomeLink Furnace 0.1.0 : four industriel à fusion parallèle alimenté exclusivement par HomeLink Energy, trois paliers, recettes et automatisation.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://lkdm7.github.io/HomeLink-Wiki/furnace.html">
+<link rel="alternate" hreflang="fr" href="https://lkdm7.github.io/HomeLink-Wiki/furnace.html">
+<link rel="alternate" hreflang="en" href="https://lkdm7.github.io/HomeLink-Wiki/en/furnace.html">
+<link rel="alternate" hreflang="x-default" href="https://lkdm7.github.io/HomeLink-Wiki/furnace.html">
+<meta property="og:url" content="https://lkdm7.github.io/HomeLink-Wiki/furnace.html">
+<meta property="og:image" content="https://lkdm7.github.io/HomeLink-Wiki/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:image" content="https://lkdm7.github.io/HomeLink-Wiki/assets/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HomeLink Furnace · HomeLink Wiki">
+<meta property="og:description" content="HomeLink Furnace 0.1.0 : four industriel à fusion parallèle alimenté exclusivement par HomeLink Energy, trois paliers, recettes et automatisation.">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Aller au contenu</a>
+<header class="top">
+  <nav aria-label="Navigation principale">
+    <a class="nav-brand" href="index.html">HomeLink<span class="dot">.</span>wiki</a>
+    <a class="lang-toggle" href="en/furnace.html" hreflang="en" title="English version">EN</a>
+    <ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="homecore.html">HomeCore</a></li>
+      <li><a href="energy.html">Energy</a></li>
+      <li><a href="furnace.html" aria-current="page">Furnace</a></li>
+      <li><a href="quarry.html">Quarry</a></li>
+      <li><a href="farm.html">Farm</a></li>
+      <li><a href="storage.html">Storage</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <h1>HomeLink Furnace <span class="version">0.1.0</span></h1>
+  <p>Four industriel à fusion parallèle, alimenté <strong>exclusivement</strong> par HomeLink Energy : aucun slot de combustible, aucune conversion. La chauffe, la production et le maintien au chaud consomment des HE depuis un buffer interne. Une coupure de courant met la progression en pause <em>exacte</em> et la reprend au retour de l’énergie.</p>
+
+  <div class="badges">
+    <span class="badge">Minecraft 1.21.1</span>
+    <span class="badge">NeoForge 21.1.252</span>
+    <span class="badge">Java 21</span>
+    <span class="badge required">Requiert HomeCore 1.14.0+</span>
+    <span class="badge required">Requiert HomeLink Energy</span>
+    <span class="badge optional">JEI / REI : support optionnel</span>
+  </div>
+
+  <div class="downloads">
+    <a class="dl-btn gh" href="https://github.com/LKDM7/HomeLink-Furnace/releases" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>Releases</a>
+    <a class="dl-btn gh" href="https://github.com/LKDM7/HomeLink-Furnace" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>Code source</a>
+  </div>
+  <p class="dl-note">CurseForge : publication en cours de validation.</p>
+
+  <nav class="toc" aria-label="Sommaire de la page">
+    <h2>Sur cette page</h2>
+    <ol>
+      <li><a href="#principe">Principe</a></li>
+      <li><a href="#paliers">Paliers</a></li>
+      <li><a href="#energie">Énergie</a></li>
+      <li><a href="#recettes">Recettes</a></li>
+      <li><a href="#faces">Faces et automatisation</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="principe">Principe<a class="anchor" href="#principe" aria-label="Lien vers la section Principe">#</a></h2>
+  <p>Le four industriel exécute plusieurs recettes de cuisson (fusion, cuisson, séchage) <strong>en parallèle</strong> sur un même bloc. Chaque palier augmente le nombre de jobs simultanés, le nombre de slots d’entrée, la vitesse de traitement et la capacité du buffer d’énergie. Le serveur fait autorité sur la progression ; l’XP des recettes terminées se récupère à la main (permission HomeCore <code>CONTROL</code>) : l’automatisation ne prend jamais l’XP.</p>
+
+  <h2 id="paliers">Paliers<a class="anchor" href="#paliers" aria-label="Lien vers la section Paliers">#</a></h2>
+  <table>
+    <caption>Les trois paliers du four industriel.</caption>
+    <thead><tr><th scope="col">Palier</th><th scope="col">Structure</th><th scope="col">Jobs parallèles</th><th scope="col">Vitesse</th><th scope="col">Slots d’entrée</th><th scope="col">Buffer HE</th></tr></thead>
+    <tbody>
+      <tr><td>Four industriel I</td><td>1×1×1</td><td>2</td><td>1,0×</td><td>9</td><td>2 000 HE</td></tr>
+      <tr><td>Four industriel II</td><td>2×1×1</td><td>4</td><td>1,5×</td><td>18</td><td>6 000 HE</td></tr>
+      <tr><td>Four industriel III</td><td>2×2×2</td><td>8</td><td>2,0×</td><td>27</td><td>16 000 HE</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="energie">Énergie<a class="anchor" href="#energie" aria-label="Lien vers la section Énergie">#</a></h2>
+  <p>Le four ne stocke que des HE (HomeLink Energy) : aucun slot de combustible. La <strong>durée</strong> d’une recette modifie son coût en énergie, pas la vitesse du palier. À l’arrêt, le buffer se recharge et les sorties restent accessibles ; un résultat terminé attend si la sortie est pleine. Reliez le four à une source <a href="energy.html">Energy</a> (panneaux, éoliennes, hydraulique, batteries) par câble cuivre.</p>
+
+  <h2 id="recettes">Recettes<a class="anchor" href="#recettes" aria-label="Lien vers la section Recettes">#</a></h2>
+  <p>Tous les paliers se fabriquent à la table vanilla. Chaque palier supérieur réutilise le four du palier précédent.</p>
+  <p class="icon-note">Icônes des blocs : rendu 3D de leur modèle, comme dans l’inventaire. Ingrédients : textures réelles du mod et de Minecraft.</p>
+  <div class="recipe-list">
+    <div class="recipe" id="recipe-industrial-furnace-i">
+      <div class="recipe-grid" role="group" aria-label="Grille de fabrication 3×3 : Four industriel I ×1">
+        <div class="slot"><img src="assets/items/mc_iron_ingot.png" alt="Fer" title="Fer" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/mc_copper_ingot.png" alt="Cuivre" title="Cuivre" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/mc_iron_ingot.png" alt="Fer" title="Fer" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/mc_furnace.png" alt="Four" title="Four" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/hc_circuit_board.png" alt="Circuit Board" title="Circuit Board" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/mc_iron_ingot.png" alt="Fer" title="Fer" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/mc_iron_ingot.png" alt="Fer" title="Fer" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">I</span><img src="assets/items/fu_industrial_furnace.png" alt="Four industriel I" title="Four industriel I" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Four industriel I<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-industrial-furnace-ii">
+      <div class="recipe-grid" role="group" aria-label="Grille de fabrication 3×3 : Four industriel II ×1">
+        <div class="slot"><img src="assets/items/mc_gold_ingot.png" alt="Or" title="Or" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/mc_gold_ingot.png" alt="Or" title="Or" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/fu_industrial_furnace.png" alt="Four industriel I" title="Four industriel I" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/mc_iron_ingot.png" alt="Fer" title="Fer" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/mc_copper_ingot.png" alt="Cuivre" title="Cuivre" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/mc_iron_ingot.png" alt="Fer" title="Fer" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">II</span><img src="assets/items/fu_industrial_furnace_2.png" alt="Four industriel II" title="Four industriel II" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Four industriel II<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-industrial-furnace-iii">
+      <div class="recipe-grid" role="group" aria-label="Grille de fabrication 3×3 : Four industriel III ×1">
+        <div class="slot"><img src="assets/items/mc_diamond.png" alt="Diamant" title="Diamant" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/mc_copper_block.png" alt="Bloc de cuivre" title="Bloc de cuivre" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/fu_industrial_furnace_2.png" alt="Four industriel II" title="Four industriel II" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/mc_iron_block.png" alt="Bloc de fer" title="Bloc de fer" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/mc_netherite_ingot.png" alt="Lingot de netherite" title="Lingot de netherite" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="assets/items/mc_iron_block.png" alt="Bloc de fer" title="Bloc de fer" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">III</span><img src="assets/items/fu_industrial_furnace_3.png" alt="Four industriel III" title="Four industriel III" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Four industriel III<span class="qty">×1</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="faces">Faces et automatisation<a class="anchor" href="#faces" aria-label="Lien vers la section Faces et automatisation">#</a></h2>
+  <table>
+    <thead><tr><th scope="col">Face</th><th scope="col">Rôle</th></tr></thead>
+    <tbody>
+      <tr><td>Dessus</td><td>Entrée des objets à traiter.</td></tr>
+      <tr><td>Arrière</td><td>Sortie des résultats.</td></tr>
+      <tr><td>Droite</td><td>Entrée d’énergie (HE).</td></tr>
+    </tbody>
+  </table>
+  <p>Les faces d’entrée/sortie permettent l’automatisation par entonnoirs ou conduits. Un verrou redstone (Ignorer / Signal requis / Absence de signal) et un bouton marche/arrêt pilotent la chauffe. Le four s’expose comme appareil HomeCore : il apparaît dans le <a href="dashboard.html">Dashboard</a> et se relie à un HomeNetwork avec le connecteur.</p>
+
+    <h2 id="galerie">Galerie<a class="anchor" href="#galerie" aria-label="Lien vers la section Galerie">#</a></h2>
+  <p class="icon-note">Captures en jeu. Cliquer pour agrandir.</p>
+  <div class="gallery">
+      <figure><button type="button" class="shot" data-full="assets/shots/fu-gui-production.png" data-cap="GUI Production — Four industriel III"><img src="assets/shots/fu-gui-production.png" alt="GUI Production — Four industriel III" loading="lazy" decoding="async"></button><figcaption>GUI Production — Four industriel III</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="assets/shots/fu-gui-settings.png" data-cap="Onglet Réglages"><img src="assets/shots/fu-gui-settings.png" alt="Onglet Réglages" loading="lazy" decoding="async"></button><figcaption>Onglet Réglages</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="assets/shots/fu-world.png" data-cap="Four industriel III en jeu"><img src="assets/shots/fu-world.png" alt="Four industriel III en jeu" loading="lazy" decoding="async"></button><figcaption>Four industriel III en jeu</figcaption></figure>
+  </div>
+
+<p class="source-note"><a href="https://github.com/LKDM7/HomeLink-Furnace" target="_blank" rel="noopener">Code source et documentation complète sur GitHub →</a></p>
+  <nav class="pager" aria-label="Pages voisines">
+    <a class="prev" href="energy.html" rel="prev"><span class="dir">← Précédent</span>Energy</a>
+    <a class="next" href="quarry.html" rel="next"><span class="dir">Suivant →</span>Quarry</a>
+  </nav>
+</main>
+
+<footer>HomeLink Wiki. Documentation de l’écosystème HomeLink de LKDM7. Mods sous licence « Tous droits réservés ».</footer>
+<script src="wiki.js"></script>
+</body>
+</html>

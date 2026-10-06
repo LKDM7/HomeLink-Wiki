@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HomeLink Furnace · HomeLink Wiki</title>
+<meta name="description" content="HomeLink Furnace 0.1.0: a parallel-smelting industrial furnace powered exclusively by HomeLink Energy — three tiers, recipes and automation.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://lkdm7.github.io/HomeLink-Wiki/en/furnace.html">
+<link rel="alternate" hreflang="fr" href="https://lkdm7.github.io/HomeLink-Wiki/furnace.html">
+<link rel="alternate" hreflang="en" href="https://lkdm7.github.io/HomeLink-Wiki/en/furnace.html">
+<link rel="alternate" hreflang="x-default" href="https://lkdm7.github.io/HomeLink-Wiki/furnace.html">
+<meta property="og:url" content="https://lkdm7.github.io/HomeLink-Wiki/en/furnace.html">
+<meta property="og:image" content="https://lkdm7.github.io/HomeLink-Wiki/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta name="twitter:image" content="https://lkdm7.github.io/HomeLink-Wiki/assets/og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HomeLink Furnace · HomeLink Wiki">
+<meta property="og:description" content="HomeLink Furnace 0.1.0: a parallel-smelting industrial furnace powered exclusively by HomeLink Energy — three tiers, recipes and automation.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="top">
+  <nav aria-label="Main navigation">
+    <a class="nav-brand" href="index.html">HomeLink<span class="dot">.</span>wiki</a>
+    <a class="lang-toggle" href="../furnace.html" hreflang="fr" title="Version française">FR</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="homecore.html">HomeCore</a></li>
+      <li><a href="energy.html">Energy</a></li>
+      <li><a href="furnace.html" aria-current="page">Furnace</a></li>
+      <li><a href="quarry.html">Quarry</a></li>
+      <li><a href="farm.html">Farm</a></li>
+      <li><a href="storage.html">Storage</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <h1>HomeLink Furnace <span class="version">0.1.0</span></h1>
+  <p>A parallel-smelting industrial furnace powered <strong>exclusively</strong> by HomeLink Energy: no fuel slot, no conversion. Heating, production and keeping warm consume HE from an internal buffer. A power cut pauses progress <em>exactly</em> and resumes it when energy returns.</p>
+
+  <div class="badges">
+    <span class="badge">Minecraft 1.21.1</span>
+    <span class="badge">NeoForge 21.1.252</span>
+    <span class="badge">Java 21</span>
+    <span class="badge required">Requires HomeCore 1.14.0+</span>
+    <span class="badge required">Requires HomeLink Energy</span>
+    <span class="badge optional">JEI / REI: optional support</span>
+  </div>
+
+  <div class="downloads">
+    <a class="dl-btn gh" href="https://github.com/LKDM7/HomeLink-Furnace/releases" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>Releases</a>
+    <a class="dl-btn gh" href="https://github.com/LKDM7/HomeLink-Furnace" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>Source</a>
+  </div>
+  <p class="dl-note">CurseForge: publication under review.</p>
+
+  <nav class="toc" aria-label="Page summary">
+    <h2>On this page</h2>
+    <ol>
+      <li><a href="#principe">Principle</a></li>
+      <li><a href="#paliers">Tiers</a></li>
+      <li><a href="#energie">Energy</a></li>
+      <li><a href="#recettes">Recipes</a></li>
+      <li><a href="#faces">Faces and automation</a></li>
+      <li><a href="#galerie">Gallery</a></li>
+    </ol>
+  </nav>
+
+  <h2 id="principe">Principle<a class="anchor" href="#principe" aria-label="Link to section Principle">#</a></h2>
+  <p>The industrial furnace runs several cooking recipes (smelting, cooking, drying) <strong>in parallel</strong> on a single block. Each tier raises the number of simultaneous jobs, the number of input slots, the processing speed and the energy buffer capacity. The server is authoritative over progress; the XP from finished recipes is collected by hand (HomeCore <code>CONTROL</code> permission): automation never takes the XP.</p>
+
+  <h2 id="paliers">Tiers<a class="anchor" href="#paliers" aria-label="Link to section Tiers">#</a></h2>
+  <table>
+    <caption>The three tiers of the industrial furnace.</caption>
+    <thead><tr><th scope="col">Tier</th><th scope="col">Structure</th><th scope="col">Parallel jobs</th><th scope="col">Speed</th><th scope="col">Input slots</th><th scope="col">HE buffer</th></tr></thead>
+    <tbody>
+      <tr><td>Industrial Furnace I</td><td>1×1×1</td><td>2</td><td>1.0×</td><td>9</td><td>2,000 HE</td></tr>
+      <tr><td>Industrial Furnace II</td><td>2×1×1</td><td>4</td><td>1.5×</td><td>18</td><td>6,000 HE</td></tr>
+      <tr><td>Industrial Furnace III</td><td>2×2×2</td><td>8</td><td>2.0×</td><td>27</td><td>16,000 HE</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="energie">Energy<a class="anchor" href="#energie" aria-label="Link to section Energy">#</a></h2>
+  <p>The furnace stores only HE (HomeLink Energy): no fuel slot. A recipe's <strong>duration</strong> changes its energy cost, not the tier's speed. When stopped, the buffer recharges and the outputs stay accessible; a finished result waits if the output is full. Link the furnace to an <a href="energy.html">Energy</a> source (panels, turbines, hydro, batteries) via copper cable.</p>
+
+  <h2 id="recettes">Recipes<a class="anchor" href="#recettes" aria-label="Link to section Recipes">#</a></h2>
+  <p>Every tier is crafted at the vanilla table. Each higher tier reuses the furnace from the previous tier.</p>
+  <p class="icon-note">Block icons: 3D render of their model, as in the inventory. Ingredients: real textures from the mod and Minecraft.</p>
+  <div class="recipe-list">
+    <div class="recipe" id="recipe-industrial-furnace-i">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Industrial Furnace I ×1">
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_furnace.png" alt="Furnace" title="Furnace" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_circuit_board.png" alt="Circuit Board" title="Circuit Board" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_redstone.png" alt="Redstone" title="Redstone" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">I</span><img src="../assets/items/fu_industrial_furnace.png" alt="Industrial Furnace I" title="Industrial Furnace I" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Industrial Furnace I<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-industrial-furnace-ii">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Industrial Furnace II ×1">
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_microprocessor.png" alt="Microprocessor" title="Microprocessor" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_gold_ingot.png" alt="Gold" title="Gold" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/fu_industrial_furnace.png" alt="Industrial Furnace I" title="Industrial Furnace I" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_ingot.png" alt="Copper" title="Copper" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_ingot.png" alt="Iron" title="Iron" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">II</span><img src="../assets/items/fu_industrial_furnace_2.png" alt="Industrial Furnace II" title="Industrial Furnace II" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Industrial Furnace II<span class="qty">×1</span></div>
+      </div>
+    </div>
+    <div class="recipe" id="recipe-industrial-furnace-iii">
+      <div class="recipe-grid" role="group" aria-label="3×3 crafting grid: Industrial Furnace III ×1">
+        <div class="slot"><img src="../assets/items/mc_diamond.png" alt="Diamond" title="Diamond" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_copper_block.png" alt="Copper Block" title="Copper Block" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_communication_module.png" alt="Communication Module" title="Communication Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/fu_industrial_furnace_2.png" alt="Industrial Furnace II" title="Industrial Furnace II" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/hc_control_module.png" alt="Control Module" title="Control Module" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_block.png" alt="Iron Block" title="Iron Block" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_netherite_ingot.png" alt="Netherite Ingot" title="Netherite Ingot" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="slot"><img src="../assets/items/mc_iron_block.png" alt="Iron Block" title="Iron Block" width="16" height="16" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="recipe-arrow" aria-hidden="true">→</div>
+      <div class="recipe-result">
+        <div class="slot"><span class="tier">III</span><img src="../assets/items/fu_industrial_furnace_3.png" alt="Industrial Furnace III" title="Industrial Furnace III" width="16" height="16" loading="lazy" decoding="async"></div>
+        <div class="result-name">Industrial Furnace III<span class="qty">×1</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="faces">Faces and automation<a class="anchor" href="#faces" aria-label="Link to section Faces and automation">#</a></h2>
+  <table>
+    <thead><tr><th scope="col">Face</th><th scope="col">Role</th></tr></thead>
+    <tbody>
+      <tr><td>Top</td><td>Input for items to process.</td></tr>
+      <tr><td>Back</td><td>Output of results.</td></tr>
+      <tr><td>Right</td><td>Energy input (HE).</td></tr>
+    </tbody>
+  </table>
+  <p>The input/output faces allow automation with hoppers or pipes. A redstone lock (Ignore / Signal required / No signal required) and an on/off button drive the heating. The furnace exposes itself as a HomeCore device: it appears in the <a href="dashboard.html">Dashboard</a> and binds to a HomeNetwork with the connector.</p>
+
+    <h2 id="galerie">Gallery<a class="anchor" href="#galerie" aria-label="Link to section Gallery">#</a></h2>
+  <p class="icon-note">In-game captures. Click to enlarge.</p>
+  <div class="gallery">
+      <figure><button type="button" class="shot" data-full="assets/shots/fu-gui-production.png" data-cap="Production GUI — Industrial Furnace III"><img src="../assets/shots/fu-gui-production.png" alt="Production GUI — Industrial Furnace III" loading="lazy" decoding="async"></button><figcaption>Production GUI — Industrial Furnace III</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="assets/shots/fu-gui-settings.png" data-cap="Settings tab"><img src="../assets/shots/fu-gui-settings.png" alt="Settings tab" loading="lazy" decoding="async"></button><figcaption>Settings tab</figcaption></figure>
+      <figure><button type="button" class="shot" data-full="assets/shots/fu-world.png" data-cap="Industrial Furnace III in-game"><img src="../assets/shots/fu-world.png" alt="Industrial Furnace III in-game" loading="lazy" decoding="async"></button><figcaption>Industrial Furnace III in-game</figcaption></figure>
+  </div>
+
+<p class="source-note"><a href="https://github.com/LKDM7/HomeLink-Furnace" target="_blank" rel="noopener">Source code and full documentation on GitHub →</a></p>
+  <nav class="pager" aria-label="Adjacent pages">
+    <a class="prev" href="energy.html" rel="prev"><span class="dir">← Previous</span>Energy</a>
+    <a class="next" href="quarry.html" rel="next"><span class="dir">Next →</span>Quarry</a>
+  </nav>
+</main>
+
+<footer>HomeLink Wiki. Documentation de l’écosystème HomeLink de LKDM7. Mods sous licence « Tous droits réservés ».</footer>
+<script src="../wiki.js"></script>
+</body>
+</html>
